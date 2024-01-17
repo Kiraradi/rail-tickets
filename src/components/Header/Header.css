@@ -1,0 +1,72 @@
+.header {
+    display: flex;
+    background-position-x: left;
+    background-position-y: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: rgba(214, 117, 2);
+    position: relative;
+    z-index: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000000;
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.header-main {
+    background-image: url(../../img/Header-Main.png);
+}
+
+.header-trains {
+    background-image: url(../../img/Header-Trains.png);
+}
+
+.searchTrainsForm-header-main {
+    display: flex;
+    width: 100%;
+    padding: 0 110px;
+    justify-content: center;
+    align-items: center;
+    gap: 105px;
+    padding-top: 150px;
+}
+
+.searchTrainsForm-header-trains {
+    display: flex;
+    width: 100%;
+    padding: 0 258px;
+    justify-content: center;
+    align-items: center;
+    gap: 105px;
+    padding-top: 150px;
+}
+
+.header-title {
+    color: white;
+    font-size: 72px;
+    font-style: normal;
+    font-weight: 100;
+    line-height: normal;
+}
+
+.header-title-p {
+    color: #FFF;
+    font-size: 72px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}

@@ -1,0 +1,33 @@
+.navigation-wrapper {
+    margin-top: 15px; 
+    width: 100%; 
+}
+
+.logo {
+    color: #E5E5E5;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    margin-bottom: 15px;
+    padding: 0 258px;
+}
+
+.menu {
+    background-color: #292929;
+    display: flex;
+    flex-direction: row;
+    gap: 83px;
+    padding: 0 258px;
+    height: 94px;
+    align-items: center;
+}
+
+.menu__item {
+    color: #FFF;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    text-decoration: none;
+}
