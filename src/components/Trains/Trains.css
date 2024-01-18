@@ -1,0 +1,11 @@
+.trains-main {
+    display: flex;
+    padding: 0 258px;
+    gap: 86px;
+}
+
+.trains-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 94px;
+}

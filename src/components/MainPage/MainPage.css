@@ -1,0 +1,4 @@
+.MainPag {
+    display: flex;
+    flex-direction: column;
+}

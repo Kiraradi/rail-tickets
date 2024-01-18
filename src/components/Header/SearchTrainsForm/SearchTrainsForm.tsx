@@ -4,6 +4,10 @@ import ru from 'date-fns/locale/ru';
 import ApiService from '../../../services/ApiService';
 import AsyncSelect from 'react-select/async';
 import { ActionMeta, GroupBase, StylesConfig } from 'react-select';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../hook';
+import { changeDirection } from '../../../store/directionSlice';
+import moment from 'moment';
 
 import './SearchTrainsForm.css';
 import "react-datepicker/dist/react-datepicker.css";
@@ -22,12 +26,16 @@ export interface ISelectOption {
 }
 
 export default function SearchTrainsForm(props: ISearchTrainsForm) {
+    const dispatch = useAppDispatch()
+
     const initFormData = {
         directionFrom: null as ISelectOption | null,
         directionTo: null as ISelectOption | null,
         dateFrom: null as Date | null,
         dateTo: null as Date | null
     }
+
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState(initFormData);
 
@@ -51,11 +59,13 @@ export default function SearchTrainsForm(props: ISearchTrainsForm) {
         if (formData.directionFrom != null && formData.directionTo != null) {
             const request: IDirectionsRequest = {
                 from_city_id: formData.directionFrom.value,
-                to_city_id: formData.directionTo?.value
+                to_city_id: formData.directionTo?.value,
+                date_start: moment(formData.dateFrom).format('YYYY-MM-DD'),
+                date_end: moment(formData.dateTo).format('YYYY-MM-DD') 
             };
-                
-            ApiService.getDirections(request);
-            setFormData(initFormData);
+            
+            dispatch(changeDirection(request));
+            navigate('/trains')
         }
     }
 
@@ -120,6 +130,7 @@ export default function SearchTrainsForm(props: ISearchTrainsForm) {
                             dateFormat="dd/MM/yyyy"
                             locale={ru}
                             placeholderText='ДД/ММ/ГГ'
+                            required
                         />    
                     </div>
                     
@@ -131,6 +142,7 @@ export default function SearchTrainsForm(props: ISearchTrainsForm) {
                             dateFormat="dd/MM/yyyy"
                             locale={ru}
                             placeholderText='ДД/ММ/ГГ'
+                            required
                         />    
                     </div>
                     

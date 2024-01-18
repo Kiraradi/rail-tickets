@@ -1,0 +1,32 @@
+.description-site {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 100px 258px;
+}
+
+.description-site-title {
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.description-site-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-left: 9px solid #FFA800;
+    padding-left: 19px;
+}
+
+.description-site-content {
+    font-size: 24px;
+}
+
+.bold {
+   font-weight: 800; 
+}

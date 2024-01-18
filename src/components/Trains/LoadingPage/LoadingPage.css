@@ -1,0 +1,19 @@
+.loading-Page {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 780px;
+    align-items: center;
+    justify-content: center;
+    background-color: #3E3C41;
+}
+
+.loading-Page-title {
+    color: #928F94;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
