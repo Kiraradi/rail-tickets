@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useAppSelector } from '../../../hook';
 import DatePicker from "react-datepicker";
 import ru from 'date-fns/locale/ru';
+import CheckboxFilter from './checkbox/CheckboxFilter';
 
 import './FilterMenu.css';
 
@@ -58,7 +59,9 @@ export default function FilterMenu() {
     }
 
     const Options = () => {
-        return <></>
+        return <>
+            <CheckboxFilter imgURL='/images/secondClassIcon .png' title='Купе' type='have_second_class'/>
+        </>
     }
 
     const Price = () => {
