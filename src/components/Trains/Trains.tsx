@@ -6,17 +6,20 @@ import FilterMenu from './FilterMenu/FilterMenu';
 import LastTickets from './LastTickets/LastTickets';
 import Steps from './Steps/Steps';
 import TrainList from './TrainList/TrainList';
+import { ChangeDirectionsResponse } from '../../store/directionsResponseSlice';
+import { useAppDispatch } from '../../hook';
 
 import './Trains.css';
 
 export default function Trains() {
+  const dispatch = useAppDispatch()
   const state = useAppSelector(state => state.direction.direction);
   
   const [isLoadingPage, setLoadingPage] = useState(true);
   const direction = useAppSelector(state => state.direction.direction);
   async function getDirections() {
-    const data =  await ApiService.getDirections(direction)
-    console.log(data)
+    const data =  await ApiService.getDirections(direction);
+    dispatch(ChangeDirectionsResponse(data));
   }
 
   useEffect(() => {

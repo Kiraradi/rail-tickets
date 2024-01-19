@@ -1,6 +1,10 @@
 import { IArrivalAndDeparture, IDirection, IFromAndTo } from "../../../../interfaces/IDirectionsResponse"
 import moment from "moment"
-export default function TrainCard(direction: IDirection) {
+
+export interface ITrainCard {
+    direction: IDirection
+}
+export default function TrainCard(props: ITrainCard) {
 
     const TimeAndStationInfo = (info: IFromAndTo | undefined) => {
         if (!info) {
@@ -38,10 +42,10 @@ export default function TrainCard(direction: IDirection) {
         return (
             <div>
                 <div>
-                    {DirectionInfo(direction.arrival)}
+                    {DirectionInfo(props.direction.arrival)}
                 </div>
                 <div>
-                    {DirectionInfo(direction.departure)}
+                    {DirectionInfo(props.direction.departure)}
                 </div>
             </div>);
     }
@@ -67,17 +71,17 @@ export default function TrainCard(direction: IDirection) {
         }
 
         return <div>
-            {SeatInfo(info.have_first_class, 'first', info.available_seats_info['first'], info.price_info['first'])}
-            {SeatInfo(info.have_second_class, 'second', info.available_seats_info['second'], info.price_info['second'])}
-            {SeatInfo(info.have_third_class, 'third', info.available_seats_info['third'], info.price_info['third'])}
-            {SeatInfo(info.have_fourth_class, 'fourth', info.available_seats_info['fourth'], info.price_info['fourth'])}
+            {SeatInfo(info.have_first_class, 'first', info.available_seats_info['first'], info.price_info['first']?.bottom_price)}
+            {SeatInfo(info.have_second_class, 'second', info.available_seats_info['second'], info.price_info['second']?.bottom_price)}
+            {SeatInfo(info.have_third_class, 'third', info.available_seats_info['third'], info.price_info['third']?.bottom_price)}
+            {SeatInfo(info.have_fourth_class, 'fourth', info.available_seats_info['fourth'], info.price_info['fourth']?.bottom_price)}
         </div>
     }
 
     const MainSeatsInfo= () => {
         return (
            <div>
-            {SeatsInfo(direction.arrival)}
+            {SeatsInfo(props.direction.arrival)}
             <button className="mainSeatsInfo-button">Выбрать места</button>
            </div> 
         )
@@ -87,10 +91,10 @@ export default function TrainCard(direction: IDirection) {
         return (
             <div className="MainInfo">
                 <img className="MainInfo-logo" src="./images/TrainCardMainLogo.png" alt="MainInfo-logo"/>
-                <h2 className="MainInfo-train_name">{direction.arrival?.train?.name}</h2>
+                <h2 className="MainInfo-train_name">{props.direction.arrival?.train?.name}</h2>
                 <div className="MainInfo-direction">
-                    <p>{direction.arrival?.from?.city?.name}</p>
-                    <p>{direction.arrival?.to?.city?.name}</p>
+                    <p>{props.direction.arrival?.from?.city?.name}</p>
+                    <p>{props.direction.arrival?.to?.city?.name}</p>
                 </div>
             </div>
         )
@@ -99,7 +103,9 @@ export default function TrainCard(direction: IDirection) {
     
     return (
         <div className="TrainCard">
-
+            <>{MainInfo()}</>
+            <>{DirectionsInfo()}</>
+            <>{MainSeatsInfo()}</>
         </div>
     )
 }
