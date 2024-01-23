@@ -1,4 +1,29 @@
 .filterMenu {
     background-color: #3E3C41;
-    padding: 28px;
+}
+
+.DateFilter {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    padding: 34px 30px;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.DateFilter-date {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.DateFilter-date-title {
+    color: #FFF;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.options {
+    padding: 34px 30px; 
 }

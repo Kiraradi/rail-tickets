@@ -1,36 +1,34 @@
-import {useState} from 'react'
+import { IDirectionsRequest } from '../../../../interfaces/IDirectionsRequest';
 
 import './CheckboxFilter.css';
 
 export interface ICheckboxFilter {
+    checked: boolean | null | undefined
     imgURL: string
     title: string
-    type: string
+    type: keyof IDirectionsRequest
+    onChenge: (arg: keyof IDirectionsRequest) => void 
 }
 
 export default function CheckboxFilter(props: ICheckboxFilter) {
 
-    const [checked, setChecked] = useState(false);
-
-   function chengeCheckbox() {
-      setChecked(!checked);
-   }
-
     return (
         <div className='checkboxFilter-wrapper'>
             <img className='checkboxFilter-icon' src={props.imgURL} alt={'checkboxFilter-icon'}/>
-            <h2 className='checkboxFilter-title'>{props.title}</h2>
+            <div className='checkboxFilter-title-wrapper'>
+                <h2 className='checkboxFilter-title'>{props.title}</h2> 
+            </div>
             <div className='checkboxFilter'>
                 <input
-                    checked = {checked}
-                    onChange={chengeCheckbox}
-                    className="react-switch-checkbox"
-                    id={`react-switch-new`}
+                    checked = {Boolean(props.checked)}
+                    onChange={()=> {props.onChenge(props.type)}}
+                    className={`react-switch-checkbox`}
+                    id={`react-switch-new_${props.type}`}
                     type="checkbox"
                 />
                 <label
                     className="react-switch-label"
-                    htmlFor={`react-switch-new`}
+                    htmlFor={`react-switch-new_${props.type}`}
                 >
                     <span className={`react-switch-button`} />
                 </label>

@@ -11,7 +11,7 @@ export interface IDirectionsRequest {
     have_fourth_class?: boolean | null
     have_wifi?: boolean | null
     have_air_conditioning?: boolean | null
-    have_express?: boolean | null
+    have_express?: boolean 
     price_from?: number | null
     price_to?:number | null
     start_departure_hour_from?: number | null

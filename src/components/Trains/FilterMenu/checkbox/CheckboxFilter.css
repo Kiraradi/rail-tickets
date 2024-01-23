@@ -2,8 +2,13 @@
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: center;
-    gap: 35px;
+    justify-content: space-between;
+    padding: 17px 0;
+    gap: 30px;
+    
+}
+.checkboxFilter-title-wrapper {
+  width: 100%;
 }
 
 .checkboxFilter-title {
@@ -12,7 +17,9 @@
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    text-align: start;
 }
+
 
 .react-switch-checkbox {
     height: 0;

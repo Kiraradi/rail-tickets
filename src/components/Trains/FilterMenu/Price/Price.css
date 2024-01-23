@@ -1,0 +1,54 @@
+.price-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    border-bottom: 1px solid #E5E5E5;
+    padding: 0 30px 32px;
+}
+
+.rc-slider-handle {
+    border: 1px solid white !important;
+    opacity: 1 !important;
+    background-color: white !important;
+}
+
+.slider-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.price-title {
+    color: #FFF;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.slider-bottom {
+    color: #E5E5E5;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;    
+}
+
+.slider-titleBar, .slider-bottomBar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.slider-bottomBar {
+    padding-top: 10px;
+}
+
+.slider-title {
+    color: #FFF;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+

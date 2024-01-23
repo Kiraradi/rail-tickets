@@ -13,7 +13,6 @@ import './Trains.css';
 
 export default function Trains() {
   const dispatch = useAppDispatch()
-  const state = useAppSelector(state => state.direction.direction);
   
   const [isLoadingPage, setLoadingPage] = useState(true);
   const direction = useAppSelector(state => state.direction.direction);

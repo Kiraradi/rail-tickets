@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
-import { useAppSelector } from '../../../hook';
+import { useAppSelector, useAppDispatch} from '../../../hook';
 import DatePicker from "react-datepicker";
 import ru from 'date-fns/locale/ru';
 import CheckboxFilter from './checkbox/CheckboxFilter';
+import Price from './Price/Price';
+import FromAndTo from './FromAndTo/FromAndTo';
+
+
 
 import './FilterMenu.css';
+
+import { IDirectionsRequest } from '../../../interfaces/IDirectionsRequest';
+import { changeDirection } from '../../../store/directionSlice';
+import { ChangeDirectionsResponse } from '../../../store/directionsResponseSlice';
+import ApiService from '../../../services/ApiService';
 
 export default function FilterMenu() {
 
     const direction = useAppSelector(state => state.direction.direction);
+    const dispatch = useAppDispatch();
 
     const initFormData = {...direction, date_start: direction.date_start ? new Date(direction.date_start) : null, 
         date_end: direction.date_end ? new Date(direction.date_end) : null}
@@ -58,28 +68,38 @@ export default function FilterMenu() {
         
     }
 
+    const chengeCheckbox = async (type: keyof IDirectionsRequest) => {
+        console.log(type);
+        dispatch(changeDirection({... direction , [type]: !direction[type]}))
+
+        const request = await ApiService.getDirections(direction);
+        dispatch(ChangeDirectionsResponse(request));
+
+    }
+
     const Options = () => {
-        return <>
-            <CheckboxFilter imgURL='/images/secondClassIcon .png' title='Купе' type='have_second_class'/>
-        </>
+        return <div className='options'>
+            <CheckboxFilter checked={direction.have_second_class} imgURL='/images/secondClassIcon.png' title='Купе' type='have_second_class' onChenge={chengeCheckbox}/>
+            <CheckboxFilter checked={direction.have_third_class} imgURL='/images/thirdClassIcon.png' title='Плацкарт' type='have_third_class' onChenge={chengeCheckbox}/>
+            <CheckboxFilter checked={direction.have_fourth_class} imgURL='/images/fourthClassIcon.png' title='Сидячий' type='have_fourth_class' onChenge={chengeCheckbox}/>
+            <CheckboxFilter checked={direction.have_first_class}imgURL='/images/firstClassIcon.png' title='Люкс' type='have_first_class' onChenge={chengeCheckbox}/>
+            <CheckboxFilter checked={direction.have_wifi} imgURL='/images/wifiIcon.png' title='Wi-Fi' type='have_wifi' onChenge={chengeCheckbox}/>
+            <CheckboxFilter checked={direction.have_express} imgURL='/images/expressIcon.png' title='Экспресс' type='have_express' onChenge={chengeCheckbox}/>
+        </div>
     }
 
-    const Price = () => {
-        return <></>
-    }
+    
 
-    const FromAndTo = (title: string) => {
-        return <></>
-    }
+    
 
     return (
         <div className='filterMenu'>
             <form>
               {DateFilter()} 
               {Options()}
-              {Price()}
-              {FromAndTo('Туда')}
-              {FromAndTo('Обратно')}
+              <Price/>
+              <FromAndTo type={'to'}/>
+              <FromAndTo type={'from'}/>
             </form>
         </div>
     )

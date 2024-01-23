@@ -1,0 +1,59 @@
+.fromAndTo-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 30px ;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.fromAndTo-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+
+
+.fromAndTo-title-wrapper {
+    display: flex;
+    width: 100%;
+}
+
+.fromAndTo-title {
+    color: #FFF;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.fromAndTo-button {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.fromAndTo-button-open {
+    background-image: url(../../../../img/closeButtonIcon.png);
+}
+
+.fromAndTo-button-close {
+    background-image: url(../../../../img/openButtonIcon.png);
+}
+
+.fromAndTo-content-wrapper {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    visibility: hidden;
+    transition: all 150ms ease-in-out;
+    word-break: break-all;
+    height: 0;
+    width: 100%;
+    gap: 40px;
+}
+
+.fromAndTo-content-wrapper-open {
+    visibility: visible;
+    height: 100%;
+}
