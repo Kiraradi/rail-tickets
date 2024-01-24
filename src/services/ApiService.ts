@@ -1,6 +1,7 @@
 import { ICity } from "../interfaces/ICity";
 import { IDirectionsRequest } from "../interfaces/IDirectionsRequest";
-import { IDirectionsResponse } from "../interfaces/IDirectionsResponse";
+import { IDirectionsResponse, IDirection } from "../interfaces/IDirectionsResponse";
+
 
 export default class ApiService {
 
@@ -15,6 +16,20 @@ export default class ApiService {
         }
 
         return cities;
+    }
+
+    static async getLastRoutes(): Promise<IDirection[]> {
+        let lastRoutes: IDirection[] = [];
+
+        const response = await fetch(`https://students.netoservices.ru/fe-diplom/routes/last`);
+        
+        if (response.ok) {
+            lastRoutes = (await response.json()) as IDirection[];
+        } else {
+            console.log("Ошибка HTTP: " + response.status);
+        }
+
+        return lastRoutes;
     }
 
     static async getDirections(request: IDirectionsRequest): Promise<IDirectionsResponse> {

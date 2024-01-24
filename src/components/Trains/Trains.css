@@ -2,6 +2,8 @@
     display: flex;
     padding: 0 258px;
     gap: 86px;
+    background-color: #F7F5F9;
+    padding-top: 95px;
 }
 
 .trains-sidebar {
