@@ -69,7 +69,6 @@ export default function FilterMenu() {
     }
 
     const chengeCheckbox = async (type: keyof IDirectionsRequest) => {
-        console.log(type);
         dispatch(changeDirection({... direction , [type]: !direction[type]}))
 
         const request = await ApiService.getDirections(direction);
@@ -88,9 +87,6 @@ export default function FilterMenu() {
         </div>
     }
 
-    
-
-    
 
     return (
         <div className='filterMenu'>

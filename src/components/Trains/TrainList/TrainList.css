@@ -1,0 +1,6 @@
+.trainList {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    width: 100%;
+}

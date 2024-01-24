@@ -1,0 +1,244 @@
+.TrainCard {
+    display: flex;
+    border: 1px solid #C4C4C4;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.30);
+    width: 100%;
+    justify-content: space-between;
+    transition: all 250ms ease-in-out ;
+}
+
+.TrainCard:hover {
+    border-top: 1px solid #FFA800;
+    border-right: 1px solid #FFA800;
+    border-bottom: 1px solid #FFA800;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.30);
+
+}
+
+.MainInfo {
+    display: flex;
+    flex-direction: column;
+    background-color: #E4E0E9;
+    width: 20%;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    padding: 90px 0;
+}
+
+.MainInfo-logo{
+    max-width: 86px;
+}
+
+.MainInfo-train_name {
+    color: #3E3C41;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.MainInfo-direction {
+    color: #292929;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.timeAndStationInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5px;
+    max-width: 150px;
+    width: 100%;
+}
+
+.timeAndStationInfo-time {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.timeAndStationInfo-city {
+    color: #292929;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.timeAndStationInfo-station {
+    color: #928F94;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.directionsInfo {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    padding: 50px;
+    gap: 40px;
+    border-right: 1px solid #E5E5E5;
+    background-color: white;
+}
+
+.directionInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 25px;
+    width: 100%;
+    
+}
+
+.directionInfo-duration-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+.directionInfo-duration {
+    color: #C4C4C4;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.mainSeatsInfo {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 15px;
+    justify-content: space-between;
+}
+
+.mainSeatsInfo {
+    padding: 40px 20px;
+    background-color: white;
+}
+
+.seatsInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.seatInfo {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.seatInfo-bottomPrice-wrapper {
+    display: flex;
+}
+
+.carriageСlass {
+    color: #3E3C41;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+}
+
+.seatInfo-placeCount-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.seatInfo-placeCount {
+    color: #FFA800;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.seatInfo-bottomPrice-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #928F94;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    max-width: 100px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.seatInfo-bottomPrice {
+    color: #2D2B2F;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.seatInfo-rub {
+    color: #928F94;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.mainSeatsInfo-button {
+    border: 1px solid #FFA800;
+    border-radius: 5px;
+    background: #FFA800;
+    color: #FFF;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 8px 15px;
+    transition: all 150ms ease-in-out;
+    max-width: 300px;
+    width: 100%;
+}
+
+.mainSeatsInfo-button:hover {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.mainSeatsInfo-button:active {
+    border: 1px solid #FFA800;
+    background-color: #F7F5F9;
+    color: #FFA800;
+}
+
+.mainSeatsInfo-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+
+
+.mainSeatsInfo-img {
+    width: 92px;
+    height: 20px;
+}
