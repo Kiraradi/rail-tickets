@@ -5,15 +5,14 @@ import ru from 'date-fns/locale/ru';
 import CheckboxFilter from './checkbox/CheckboxFilter';
 import Price from './Price/Price';
 import FromAndTo from './FromAndTo/FromAndTo';
-
-
-
-import './FilterMenu.css';
-
+import moment from 'moment';
 import { IDirectionsRequest } from '../../../interfaces/IDirectionsRequest';
 import { changeDirection } from '../../../store/directionSlice';
 import { ChangeDirectionsResponse } from '../../../store/directionsResponseSlice';
 import ApiService from '../../../services/ApiService';
+
+import './FilterMenu.css';
+
 
 export default function FilterMenu() {
 
@@ -25,8 +24,13 @@ export default function FilterMenu() {
     
     const [formData, setFormData] = useState(initFormData);
 
-    const handlerChange = (name: string, value: any) => {
+    const handlerChange = async(name: keyof IDirectionsRequest, value: any) => {
         setFormData({...formData, [name]: value});
+
+        dispatch(changeDirection({... direction , [name]: moment(value).format('YYYY-MM-DD')}))
+
+        const request = await ApiService.getDirections(direction);
+        dispatch(ChangeDirectionsResponse(request));
     };
 
     const customInput = () : React.ReactNode => {

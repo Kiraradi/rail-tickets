@@ -65,6 +65,7 @@ export default function SearchTrainsForm(props: ISearchTrainsForm) {
             };
             
             dispatch(changeDirection(request));
+            setFormData(initFormData);
             navigate('/trains')
         }
     }
