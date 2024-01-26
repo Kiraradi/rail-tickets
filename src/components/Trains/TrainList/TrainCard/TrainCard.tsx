@@ -1,42 +1,46 @@
 import { IArrivalAndDeparture, IDirection, IFromAndTo } from "../../../../interfaces/IDirectionsResponse"
 import moment from "moment";
 import { makeFirstLetterUppercase } from "../../../../services/makeFirstLetterUppercase";
+import { useNavigate } from "react-router-dom";
 
 import './TrainCard.css'
 
 export interface ITrainCard {
     direction: IDirection
+    index: number
 }
+
+export function TimeAndStationInfo (info: IFromAndTo | undefined)  {
+    if (!info) {
+        return (<></>);
+    }
+   
+    return (
+        <div className="timeAndStationInfo">
+            <div className="timeAndStationInfo-time">{moment(info.datetime).format('HH:MM')}</div>
+            <div className="timeAndStationInfo-city">{makeFirstLetterUppercase(info.city?.name)}</div>
+            <div className="timeAndStationInfo-station">{makeFirstLetterUppercase(info.railway_station_name) + ' вокзал'}</div>
+        </div>);
+}
+
+export function DirectionInfo  (info: IArrivalAndDeparture | undefined, direction: string)  {
+    if (!info) {
+        return (<></>);
+    }
+
+    return (
+        <div className="directionInfo">
+            {TimeAndStationInfo(info.from)}
+            <div className="directionInfo-duration-wrapper">
+                <div className="directionInfo-duration">{moment(info.duration).format('HH:MM')}</div>
+                <img src={`/images/vector${direction === "to"? 'To' : 'From'}.png`}/>
+            </div>
+            {TimeAndStationInfo(info.to)}   
+        </div>);
+}
+
 export default function TrainCard(props: ITrainCard) {
-
-    const TimeAndStationInfo = (info: IFromAndTo | undefined) => {
-        if (!info) {
-            return (<></>);
-        }
-       
-        return (
-            <div className="timeAndStationInfo">
-                <div className="timeAndStationInfo-time">{moment(info.datetime).format('HH:MM')}</div>
-                <div className="timeAndStationInfo-city">{makeFirstLetterUppercase(info.city?.name)}</div>
-                <div className="timeAndStationInfo-station">{makeFirstLetterUppercase(info.railway_station_name) + ' вокзал'}</div>
-            </div>);
-    }
-
-    const DirectionInfo = (info: IArrivalAndDeparture | undefined, direction: string) => {
-        if (!info) {
-            return (<></>);
-        }
-    
-        return (
-            <div className="directionInfo">
-                {TimeAndStationInfo(info.from)}
-                <div className="directionInfo-duration-wrapper">
-                    <div className="directionInfo-duration">{moment(info.duration).format('HH:MM')}</div>
-                    <img src={`/images/vector${direction === "to"? 'To' : 'From'}.png`}/>
-                </div>
-                {TimeAndStationInfo(info.to)}   
-            </div>);
-    }
+    const navigate = useNavigate();
 
     const DirectionsInfo = () => {
         return (
@@ -92,7 +96,12 @@ export default function TrainCard(props: ITrainCard) {
             
             <div className="mainSeatsInfo-bottom">
                 <img className="mainSeatsInfo-img" alt="img" src="/images/lastTiketIcons.png"/>
-               <button className="mainSeatsInfo-button">Выбрать места</button> 
+                <button 
+                    className="mainSeatsInfo-button" 
+                    onClick={()=> {
+                        navigate(`/trains/${props.index}`);
+                    }}
+                >Выбрать места</button> 
             </div>
             
            </div> 

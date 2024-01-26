@@ -1,0 +1,178 @@
+.SeatsCard {
+    display: flex;
+    flex-direction: column;
+    padding: 35px 0;
+    width: 100%;
+    border: 1px solid #C4C4C4;
+    background: #FFF;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    gap: 30px;
+}
+
+.seatsCard-header-button-wrapper {
+    display: flex;
+    padding: 0 15px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.seatsCard-header-button-wrapper-to {
+    justify-content: flex-start;
+}
+
+.seatsCard-header-button-icon {
+    width: 76px;
+    height: 60px;
+}
+
+.seatsCard-header-button {
+    border: 1px solid #C4C4C4;
+    background: #FFF;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    color: #292929;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 5px;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+}
+
+.seatsCard-header-button:hover {
+    color: #FFA800;
+}
+
+.seatsCard-header-button:active {
+    background: #FFA800;
+    color: #292929;
+    border: 1px solid #FFA800;
+}
+
+.seatsCardDirectionInfo-wrapper {
+    display: flex;
+    width: 100%;
+    background-color: #F7F6F6;
+    padding: 0 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.seatsCardDirectionInfo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 15px;
+    width: 45%;
+    border-right: 1px solid #FFF;
+    padding: 10px 0;
+}
+
+.seatsCardDirectionInfo-img-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.seatsCardDirectionInfo-img {
+   width: 30px;
+   height: 20px;
+
+}
+
+.seatsCardMainInfo-wrapper {
+    display: flex;
+    width: 25%;
+    align-items: center;
+    gap: 25px;
+    border-right: 1px solid #FFF;
+    height: 100%;
+    padding: 10px 0;
+}
+
+.seatsCardMainInfo-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.seatsCardMainInfo-content-title {
+    color: #3E3C41;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 5px;
+}
+
+.seatsCardMainInfo-content {
+    color: #292929;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.seatsCardDirectionTime-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.carriageTypes-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.carriageTypes-title {
+    color: #292929;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.carriageTypeList {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 15px;
+}
+
+.carriageType {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 10px;
+    transition: all 180ms ease-in-out;
+    padding: 5px;
+    min-width: 120px;
+}
+
+.carriageType:hover {
+    border: 1px solid #FFA800;
+}
+
+.carriageType-title {
+    color: #928F94;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.carriageType-title-selected {
+    color: #FFA800;
+}

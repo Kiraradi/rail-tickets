@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import { Routes, Route, useLocation} from "react-router-dom";
 import Navigation from './Navigation/Navigation';
 import SearchTrainsForm from './SearchTrainsForm/SearchTrainsForm';
@@ -11,8 +11,8 @@ export default function Header() {
     const [className, setClassName] = useState(defaultClass);
 
     useEffect(() => {
-        if (location.pathname === '/trains') {
-          setClassName('header-trains');
+        if (location.pathname !== '/') {
+            setClassName('header-trains');
         } else {
             setClassName(defaultClass)
         }

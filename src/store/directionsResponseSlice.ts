@@ -1,12 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IDirectionsResponse } from '../interfaces/IDirectionsResponse';
+import { IDirectionsResponse, IDirection } from '../interfaces/IDirectionsResponse';
 
 export interface IDirectionsResponseSlice {
     directionsResponse : IDirectionsResponse
 }
 
 const initialState: IDirectionsResponseSlice = {
-    directionsResponse: {} as IDirectionsResponse
+    directionsResponse: {
+        total_count: 0,
+        items: [] as IDirection,
+        error:'Error'
+    } as IDirectionsResponse
 }
 
 const directionsResponse = createSlice({

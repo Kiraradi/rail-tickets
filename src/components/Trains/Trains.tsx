@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useAppSelector } from '../../hook'
 import LoadingPage from './LoadingPage/loadingPage';
 import ApiService from '../../services/ApiService';
 import FilterMenu from './FilterMenu/FilterMenu';
 import LastTickets from './LastTickets/LastTickets';
 import Steps from './Steps/Steps';
-import TrainList from './TrainList/TrainList';
 import { ChangeDirectionsResponse } from '../../store/directionsResponseSlice';
 import { useAppDispatch } from '../../hook';
+import { Outlet } from 'react-router-dom';
 
 import './Trains.css';
 
@@ -41,7 +41,7 @@ export default function Trains() {
           <FilterMenu/>
           <LastTickets/>
         </div>
-        <TrainList/>
+          <Outlet/>
       </div>            
     </div>
   )

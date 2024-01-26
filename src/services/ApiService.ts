@@ -1,7 +1,8 @@
 import { ICity } from "../interfaces/ICity";
 import { IDirectionsRequest } from "../interfaces/IDirectionsRequest";
 import { IDirectionsResponse, IDirection } from "../interfaces/IDirectionsResponse";
-
+import { ISeatsRequest } from "../interfaces/ISeatsRequest";
+import { ISeatsResponse } from "../interfaces/ISeatsResponse";
 
 export default class ApiService {
 
@@ -54,5 +55,26 @@ export default class ApiService {
 
         return directions;
         
+    }
+
+    static async getCarriages(request: ISeatsRequest): Promise<ISeatsResponse[]> {
+        let carriages = [] as ISeatsResponse[]
+        const params = (Object.keys(request) as (keyof typeof request)[])
+            .filter(key => key !== 'id' && request[key] !== null)
+            .map(key => `${key}=${request[key]}`);
+
+        const paramsString = params.join('&');
+
+        let url = `https://students.netoservices.ru/fe-diplom/routes/${request.id}/seats?${paramsString}`;
+
+        const response = await fetch(url);
+
+        if (response.ok) {
+            carriages = await response.json()
+        } else {
+            console.log("Ошибка HTTP: " + response.status);
+        }
+
+        return carriages;
     }
 }

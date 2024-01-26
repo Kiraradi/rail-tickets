@@ -54,7 +54,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 5px;
     max-width: 150px;
     width: 100%;
@@ -216,6 +216,7 @@
     transition: all 150ms ease-in-out;
     max-width: 300px;
     width: 100%;
+    cursor: pointer;
 }
 
 .mainSeatsInfo-button:hover {

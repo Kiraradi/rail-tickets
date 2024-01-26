@@ -1,0 +1,17 @@
+.seating {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #F7F5F9;
+    gap: 30px;
+}
+
+.seating-title {
+    color: #292929;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}

@@ -1,6 +1,22 @@
-.trainList {
+.trainList-wrapper {
     display: flex;
     flex-direction: column;
     gap: 45px;
     width: 100%;
+}
+
+.trainList-header {
+    display: flex;
+    width: 100%;
+    color: #928F94;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    justify-content: space-between;
+}
+
+.trainList-filterBar-wrapper {
+    display: flex;
+    gap: 15px;
 }

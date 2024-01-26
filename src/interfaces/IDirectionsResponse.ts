@@ -47,4 +47,5 @@ export interface IDirection {
 export interface IDirectionsResponse {
     total_count: number
     items: IDirection[]
+    error?:string
 }
