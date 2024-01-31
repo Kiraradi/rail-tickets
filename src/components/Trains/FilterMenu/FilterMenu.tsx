@@ -7,8 +7,8 @@ import Price from './Price/Price';
 import FromAndTo from './FromAndTo/FromAndTo';
 import moment from 'moment';
 import { IDirectionsRequest } from '../../../interfaces/IDirectionsRequest';
-import { changeDirection } from '../../../store/directionSlice';
-import { ChangeDirectionsResponse } from '../../../store/directionsResponseSlice';
+import { changeDirectionSearch } from '../../../store/directionSearchSlice';
+import { changeDirections } from '../../../store/directionsSlice';
 import ApiService from '../../../services/ApiService';
 
 import './FilterMenu.css';
@@ -16,21 +16,21 @@ import './FilterMenu.css';
 
 export default function FilterMenu() {
 
-    const direction = useAppSelector(state => state.direction.direction);
+    const directionSearch = useAppSelector(state => state.directionSearch.directionSearch);
     const dispatch = useAppDispatch();
 
-    const initFormData = {...direction, date_start: direction.date_start ? new Date(direction.date_start) : null, 
-        date_end: direction.date_end ? new Date(direction.date_end) : null}
+    const initFormData = {...directionSearch, date_start: directionSearch.date_start ? new Date(directionSearch.date_start) : null, 
+        date_end: directionSearch.date_end ? new Date(directionSearch.date_end) : null}
     
     const [formData, setFormData] = useState(initFormData);
 
     const handlerChange = async(name: keyof IDirectionsRequest, value: any) => {
         setFormData({...formData, [name]: value});
 
-        dispatch(changeDirection({... direction , [name]: moment(value).format('YYYY-MM-DD')}))
+        dispatch(changeDirectionSearch({... directionSearch , [name]: moment(value).format('YYYY-MM-DD')}))
 
-        const request = await ApiService.getDirections(direction);
-        dispatch(ChangeDirectionsResponse(request));
+        const request = await ApiService.getDirections(directionSearch);
+        dispatch(changeDirections(request));
     };
 
     const customInput = () : React.ReactNode => {
@@ -68,26 +68,23 @@ export default function FilterMenu() {
                 </div>
             </div>
         </div>
-        
-        
     }
 
     const chengeCheckbox = async (type: keyof IDirectionsRequest) => {
-        dispatch(changeDirection({... direction , [type]: !direction[type]}))
+        dispatch(changeDirectionSearch({... directionSearch , [type]: !directionSearch[type]}))
 
-        const request = await ApiService.getDirections(direction);
-        dispatch(ChangeDirectionsResponse(request));
-
+        const request = await ApiService.getDirections(directionSearch);
+        dispatch(changeDirections(request));
     }
 
     const Options = () => {
         return <div className='options'>
-            <CheckboxFilter checked={direction.have_second_class} imgURL='/images/secondClassIcon.png' title='Купе' type='have_second_class' onChenge={chengeCheckbox}/>
-            <CheckboxFilter checked={direction.have_third_class} imgURL='/images/thirdClassIcon.png' title='Плацкарт' type='have_third_class' onChenge={chengeCheckbox}/>
-            <CheckboxFilter checked={direction.have_fourth_class} imgURL='/images/fourthClassIcon.png' title='Сидячий' type='have_fourth_class' onChenge={chengeCheckbox}/>
-            <CheckboxFilter checked={direction.have_first_class}imgURL='/images/firstClassIcon.png' title='Люкс' type='have_first_class' onChenge={chengeCheckbox}/>
-            <CheckboxFilter checked={direction.have_wifi} imgURL='/images/wifiIcon.png' title='Wi-Fi' type='have_wifi' onChenge={chengeCheckbox}/>
-            <CheckboxFilter checked={direction.have_express} imgURL='/images/expressIcon.png' title='Экспресс' type='have_express' onChenge={chengeCheckbox}/>
+            <CheckboxFilter checked={directionSearch.have_second_class} imgURL='/images/secondClassIcon.png' title='Купе' type='have_second_class' onChenge={chengeCheckbox}/>
+            <CheckboxFilter checked={directionSearch.have_third_class} imgURL='/images/thirdClassIcon.png' title='Плацкарт' type='have_third_class' onChenge={chengeCheckbox}/>
+            <CheckboxFilter checked={directionSearch.have_fourth_class} imgURL='/images/fourthClassIcon.png' title='Сидячий' type='have_fourth_class' onChenge={chengeCheckbox}/>
+            <CheckboxFilter checked={directionSearch.have_first_class}imgURL='/images/firstClassIcon.png' title='Люкс' type='have_first_class' onChenge={chengeCheckbox}/>
+            <CheckboxFilter checked={directionSearch.have_wifi} imgURL='/images/wifiIcon.png' title='Wi-Fi' type='have_wifi' onChenge={chengeCheckbox}/>
+            <CheckboxFilter checked={directionSearch.have_express} imgURL='/images/expressIcon.png' title='Экспресс' type='have_express' onChenge={chengeCheckbox}/>
         </div>
     }
 

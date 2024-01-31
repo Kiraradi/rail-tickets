@@ -1,8 +1,8 @@
 import { IDirectionsRequest } from '../../../../interfaces/IDirectionsRequest';
 import Slider from 'rc-slider';
 import { useAppDispatch, useAppSelector } from '../../../../hook';
-import { changeDirection } from '../../../../store/directionSlice';
-import { ChangeDirectionsResponse } from '../../../../store/directionsResponseSlice';
+import { changeDirectionSearch } from '../../../../store/directionSearchSlice';
+import { changeDirections } from '../../../../store/directionsSlice';
 import { useState, useEffect } from 'react';
 
 import './TimeSlider.css';
@@ -24,7 +24,7 @@ export interface ITime {
 
 export default function TimeSlider(props: ITimeSlider) {
     const dispatch = useAppDispatch();
-    const direction = useAppSelector(state => state.direction.direction);
+    const directionSearch = useAppSelector(state => state.directionSearch.directionSearch);
 
     const initTime: ITime = {
         hour_from: 0,
@@ -51,10 +51,9 @@ export default function TimeSlider(props: ITimeSlider) {
     }
 
     const getDirections = async() => {
-        dispatch(changeDirection({...direction, [props.firstKey]: time.hour_from, [props.secondKey]: time.hour_to}));
-        const response = await ApiService.getDirections(direction);
-        dispatch(ChangeDirectionsResponse(response));
-        
+        dispatch(changeDirectionSearch({...directionSearch, [props.firstKey]: time.hour_from, [props.secondKey]: time.hour_to}));
+        const response = await ApiService.getDirections(directionSearch);
+        dispatch(changeDirections(response));
     }
 
     useEffect(()=> {

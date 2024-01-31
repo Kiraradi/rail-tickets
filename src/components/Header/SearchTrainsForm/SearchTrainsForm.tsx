@@ -6,7 +6,7 @@ import AsyncSelect from 'react-select/async';
 import { ActionMeta, GroupBase, StylesConfig } from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../hook';
-import { changeDirection } from '../../../store/directionSlice';
+import { changeDirectionSearch } from '../../../store/directionSearchSlice';
 import moment from 'moment';
 
 import './SearchTrainsForm.css';
@@ -64,7 +64,7 @@ export default function SearchTrainsForm(props: ISearchTrainsForm) {
                 date_end: moment(formData.dateTo).format('YYYY-MM-DD') 
             };
             
-            dispatch(changeDirection(request));
+            dispatch(changeDirectionSearch(request));
             setFormData(initFormData);
             navigate('/trains')
         }

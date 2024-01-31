@@ -1,32 +1,47 @@
 import { useEffect, useState } from 'react';
 import { ISeat, ISeatsResponse } from '../../../../../interfaces/ISeatsResponse';
 import CarriagePlaceFourthClass from './CarriagePlaceFourthClass/CarriagePlaceFourthClass';
-
-import './ChoosingSeatInCarriage.css';
 import CarriagePlaceThirdClass from './CarriagePlaceThirdClass/CarriagePlaceThirdClass';
 import CarriagePlaceFirstAndSecondClass from './CarriagePlaceFirstAndSecondClass/CarriagePlaceFirstAndSecondClass';
+import { useAppDispatch } from '../../../../../hook';
+import { cleanOrderFormSeatsByDirection, setSeats } from '../../../../../store/orderFormSlice';
+import { ISeatOrder } from '../../../../../interfaces/IOrderRequest';
 
+import './ChoosingSeatInCarriage.css';
 
 export interface IChoosingSeatInCarriage {
+    isArrival: boolean
     filteredCarriages: ISeatsResponse []
     carriageType: string
 }
+
 export default function ChoosingSeatInCarriage(props: IChoosingSeatInCarriage) {
     
-
     const [activeCarriage, setActiveCarriage] = useState(props.filteredCarriages[0]);
     const [isWifiIncluded, setWifiIncluded] = useState(false);
     const [isLinensIncluded, setLinensIncluded] = useState(false);
     const [selectedSeats, setSelectedSeats] = useState([] as number[]);
-    const [sum, setSum] = useState(0)
+    const [sum, setSum] = useState(0);
+    
+    const dispatch = useAppDispatch();
     
     useEffect(() => {
         setActiveCarriage(props.filteredCarriages[0])
         setSelectedSeats([]);
+        dispatch(cleanOrderFormSeatsByDirection(props.isArrival));
+
     }, [props.carriageType]);
 
     useEffect(() => {
-        setSum(getSum())
+        setSum(getSum());
+
+        const requestedSeats = selectedSeats
+            .map(seat => ({
+                    coach_id: activeCarriage.coach._id,
+                    seat_number: seat
+                } as ISeatOrder));
+
+        dispatch(setSeats({ isArrival: props.isArrival, seats: requestedSeats }));
     }, [selectedSeats, isWifiIncluded, isLinensIncluded])
 
     const GetTopAndBottomSeatsCount = (seats: ISeat[], type:string) => {

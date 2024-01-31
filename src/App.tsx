@@ -3,10 +3,11 @@ import Footer from "./components/Footer/Footer";
 import MainPage from "./components/MainPage/MainPage";
 import Trains from "./components/Trains/Trains";
 import Header from "./components/Header/Header";
-
-import './App.css';
 import TrainList from "./components/Trains/TrainList/TrainList";
 import Seating from "./components/Trains/Seating/Seating";
+import Passengers from "./components/Trains/Passengers/Passengers";
+
+import './App.css';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path="/trains" element={<Trains/>}>
             <Route index element={<TrainList/>}></Route>
             <Route path=":index" element={<Seating/>}/>
+            <Route path=":index/order" element={<Passengers/>}/>
           </Route>
         </Routes>
       </main>

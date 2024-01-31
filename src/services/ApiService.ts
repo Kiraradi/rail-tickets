@@ -1,14 +1,17 @@
 import { ICity } from "../interfaces/ICity";
 import { IDirectionsRequest } from "../interfaces/IDirectionsRequest";
 import { IDirectionsResponse, IDirection } from "../interfaces/IDirectionsResponse";
+import { IOrderRequest } from "../interfaces/IOrderRequest";
 import { ISeatsRequest } from "../interfaces/ISeatsRequest";
 import { ISeatsResponse } from "../interfaces/ISeatsResponse";
+
+const URL: string = 'https://students.netoservices.ru/fe-diplom'
 
 export default class ApiService {
 
     static async getCities(text: string): Promise<ICity[]> {
         let cities: ICity[] = [];
-        const response = await fetch(`https://students.netoservices.ru/fe-diplom/routes/cities?name=${text}`);
+        const response = await fetch(`${URL}/routes/cities?name=${text}`);
 
         if (response.ok) {
             cities = (await response.json()) as ICity[];
@@ -22,7 +25,7 @@ export default class ApiService {
     static async getLastRoutes(): Promise<IDirection[]> {
         let lastRoutes: IDirection[] = [];
 
-        const response = await fetch(`https://students.netoservices.ru/fe-diplom/routes/last`);
+        const response = await fetch(`${URL}/routes/last`);
         
         if (response.ok) {
             lastRoutes = (await response.json()) as IDirection[];
@@ -43,7 +46,7 @@ export default class ApiService {
 
         const paramsString = params.join('&');
         
-        let url = `https://students.netoservices.ru/fe-diplom/routes?${paramsString}`;
+        let url = `${URL}/routes?${paramsString}`;
 
         const response = await fetch(url);
 
@@ -65,7 +68,7 @@ export default class ApiService {
 
         const paramsString = params.join('&');
 
-        let url = `https://students.netoservices.ru/fe-diplom/routes/${request.id}/seats?${paramsString}`;
+        let url = `${URL}/routes/${request.id}/seats?${paramsString}`;
 
         const response = await fetch(url);
 
@@ -77,4 +80,21 @@ export default class ApiService {
 
         return carriages;
     }
+
+    static async order(request: IOrderRequest): Promise<any> {
+        const response = await fetch(`${URL}/order`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              method: "POST",
+              body: JSON.stringify(request)
+        });
+
+        if (response.ok) {
+            await response.json()
+        } else {
+            console.log("Ошибка HTTP: " + response.status);
+        }
+    } 
 }

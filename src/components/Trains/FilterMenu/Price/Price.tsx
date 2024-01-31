@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Slider from 'rc-slider';
 import { useAppDispatch, useAppSelector} from '../../../../hook';
-import { changeDirection } from '../../../../store/directionSlice';
-import { ChangeDirectionsResponse } from '../../../../store/directionsResponseSlice';
+import { changeDirectionSearch } from '../../../../store/directionSearchSlice';
+import { changeDirections } from '../../../../store/directionsSlice';
 import ApiService from '../../../../services/ApiService';
 
 import './Price.css';
@@ -14,11 +14,11 @@ export interface IPrice {
 }
 export default function Price() {
     const dispatch = useAppDispatch();
-    const direction = useAppSelector(state => state.direction.direction);
+    const directionSearch = useAppSelector(state => state.directionSearch.directionSearch);
 
     const initPrise: IPrice = {
-        price_from: direction.price_from ? direction.price_from : 0,
-        price_to: direction.price_to ? direction.price_to : 10000
+        price_from: directionSearch.price_from ? directionSearch.price_from : 0,
+        price_to: directionSearch.price_to ? directionSearch.price_to : 10000
     };
 
     const [price, setPrice] = useState(initPrise);
@@ -42,10 +42,9 @@ export default function Price() {
     }
 
     const getDirections = async() => {
-        dispatch(changeDirection({...direction, price_from: price.price_from, price_to: price.price_to}));
-        const response = await ApiService.getDirections(direction);
-        dispatch(ChangeDirectionsResponse(response));
-        
+        dispatch(changeDirectionSearch({...directionSearch, price_from: price.price_from, price_to: price.price_to}));
+        const response = await ApiService.getDirections(directionSearch);
+        dispatch(changeDirections(response));
     }
 
     useEffect(()=> {

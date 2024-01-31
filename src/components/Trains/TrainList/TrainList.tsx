@@ -4,9 +4,9 @@ import TrainCard from './TrainCard/TrainCard';
 import './TrainList.css'
 
 export default function TrainList() {
-  const directions = useAppSelector(state => state.directionsResponse.directionsResponse);
-  
-  if (!directions?.items) {
+  const directions = useAppSelector(state => state.directions.directions);
+
+  if (!directions || !directions.items) {
     return <div>Поездов нет</div>
   } 
   
