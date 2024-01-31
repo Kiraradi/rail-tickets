@@ -1,0 +1,259 @@
+.choosingSeatInCarriage-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.choosingSeatInCarriage-header-wrapper {
+    background-color: rgba(255, 168, 0, 0.44);
+    width: 100%;
+    padding: 0 35px;
+    display: flex; 
+    justify-content: flex-start;
+    align-items: center; 
+    gap: 10px;
+    height: 40px;
+}
+
+.choosingSeatInCarriage-header-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.choosingSeatInCarriage-header-title {
+    color: #2D2B2F;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.choosingSeatInCarriage-header {
+    color: #2D2B2F;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.choosingSeatInCarriage-header-content-title {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.choosingSeatInCarriage-header-content-title-active {
+    color: #FFF;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal; 
+}
+
+.choosingSeatInCarriage-content-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.choosingSeatInCarriage-content-title-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 30px;
+    background-color: rgba(255, 168, 0, 0.44);
+}
+
+.choosingSeatInCarriage-content-title {
+    font-size: 45px;
+    font-weight: 700;
+}
+.choosingSeatInCarriage-content-text{
+    color: #292929;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+} 
+
+.choosingSeatInCarriage-content-places-wrapper, .choosingSeatInCarriage-content-price-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 35px;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.choosingSeatInCarriage-content-places-title-wrapper, .choosingSeatInCarriage-content-price-title-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    height: 30px;
+}
+
+.choosingSeatInCarriage-content-places-title {
+    color: #928F94;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;   
+}
+
+.choosingSeatInCarriage-content-places-content {
+    color: #000;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.choosingSeatInCarriage-content-places-content-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    height: 30px;
+}
+
+.choosingSeatInCarriage-content-places-content-title {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.choosingSeatInCarriage-content-places-content {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.choosingSeatInCarriage-content-price-min-wrapper , .choosingSeatInCarriage-content-price-max-wrapper {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}
+
+.choosingSeatInCarriage-content-price-min, .choosingSeatInCarriage-content-price-max  {
+    color: #000;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.choosingSeatInCarriage-content-price-rub {
+    color: #928F94;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.choosingSeatInCarriage-content-service-wrapper {
+    padding: 35px;
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    flex-direction: column;
+}
+
+.choosingSeatInCarriage-content-service-title-wrapper {
+    height: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.choosingSeatInCarriage-content-serviceBar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+}
+
+.choosingSeatInCarriage-content-service-button {
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border: 1px solid #292929;
+    border-radius: 5px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: all 150ms ease-in-out;
+    background-size: 20px 15px;
+}
+
+.choosingSeatInCarriage-content-service-button-wifi {
+    background-image: url(../../../../../img/wifi_black_icon.png);
+}
+
+.choosingSeatInCarriage-content-service-button-wifi_active {
+    background-image: url(../../../../../img/wifi_white_icon.png);
+    background-color: #FDB935;
+    border: 1px solid #FDB935;
+}
+
+.choosingSeatInCarriage-content-service-button-linens {
+    background-image: url(../../../../../img/linens_black_icon.png);
+}
+
+.choosingSeatInCarriage-content-service-button-linens_active {
+    background-image: url(../../../../../img/linens_white_icon.png);
+    background-color: #FDB935;
+    border: 1px solid #FDB935;
+}
+
+.choosingSeatInCarriage-content-service-button-linens:hover, .choosingSeatInCarriage-content-service-button-linens_active:hover {
+    background-color: #FFA800;
+    background-image: url(../../../../../img/linens_black_icon.png);
+    border: 1px solid #292929;
+}
+
+.choosingSeatInCarriage-content-service-button-wifi:hover, .choosingSeatInCarriage-content-service-button-wifi_active:hover {
+    background-color: #FFA800;
+    background-image: url(../../../../../img/wifi_black_icon.png);
+    border: 1px solid #292929;
+}
+
+.choosingSeatInCarriage-content-service-button-linens_included {
+    background-image: url(../../../../../img/linens_white_icon.png);
+    background-color: #FCDC9D;
+    border: 1px solid #FCDC9D;
+}
+
+.ChoosingSeatInCarriage-sum-wrapper {
+    display: flex;
+    padding: 10px 25px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+}
+
+.ChoosingSeatInCarriage-sum {
+    color: #FFA800;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.ChoosingSeatInCarriage-rub {
+    color: #928F94;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}

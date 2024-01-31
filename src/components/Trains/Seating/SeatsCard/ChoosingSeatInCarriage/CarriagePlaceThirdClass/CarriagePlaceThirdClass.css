@@ -1,0 +1,62 @@
+.CarriagePlace-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.CarriagePlace {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin: 15px;
+    padding: 15px;
+    border: 3px solid rgb(184, 184, 184);
+    border-radius: 15px;
+}
+
+.CarriagePlace-compartment {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.CarriagePlace-compartment-row {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+.CarriagePlace-seat, .CarriagePlace-empty-seat, .CarriagePlace-seat_none {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.CarriagePlace-seat {
+    border: 2px solid rgb(184, 184, 184);
+    background-color: rgb(221, 221, 221);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+}
+
+.CarriagePlace-seat:hover {
+    border: 2px solid #FFA800;
+}
+
+.CarriagePlace-seat_none {
+    border: 2px solid rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+}
+
+.CarriagePlace-seatOccupied {
+    border: 2px solid rgb(145, 145, 145);
+    background-color: rgb(145, 145, 145);
+    color: white;
+}
+
+.CarriagePlace-seatSelected {
+    border: 2px solid #FFA800;
+}

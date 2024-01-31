@@ -5,6 +5,7 @@ import { makeATimeLine } from "../../../../services/makeATimeLine";
 import ApiService from "../../../../services/ApiService";
 import { makeFirstLetterUppercase } from "../../../../services/makeFirstLetterUppercase";
 import { useEffect, useState } from "react";
+import ChoosingSeatInCarriage from "./ChoosingSeatInCarriage/ChoosingSeatInCarriage";
 
 import './SeatsCard.css';
 import { ISeatsRequest } from "../../../../interfaces/ISeatsRequest";
@@ -81,6 +82,8 @@ export default function SeatsCard(props: ISeatsCard ) {
         { type:'first_class', text: 'Люкс' }
     ];
 
+    
+
     const [selectedCarriageType, setSelectedCarriageType] = useState<string | null>(null);
     const [carriages, setCarriages] =useState([] as ISeatsResponse []);
 
@@ -100,7 +103,6 @@ export default function SeatsCard(props: ISeatsCard ) {
 
     useEffect(()=> {
         getCarriages();
-        console.log(carriages)
     },[])
     
     const carriagesType = () => {
@@ -122,13 +124,6 @@ export default function SeatsCard(props: ISeatsCard ) {
         </div>
     }
     
-    const GetTopAndBottomSeatsCount = (carriageType: string, seats: ISeat[]) => {
-        if (carriageType === 'third') {
-            return seats.length / 3;
-        }
-        
-        return seats.length / 2;
-    }
 
     const Carriages = () => {
         if (!carriages || !carriages.length || !selectedCarriageType) {
@@ -149,53 +144,7 @@ export default function SeatsCard(props: ISeatsCard ) {
             return <></>;
         }
 
-        return <table>
-            <thead>
-                <tr>
-                    <th colSpan={4}>
-                        <p>Вагоны</p>
-                        <div>{ filteredCarriages.map(c => <p>{c.coach.name}</p>) }</div>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                {
-                    filteredCarriages.map(c => 
-                        <tr>
-                            <td>
-                                <p>{c.coach.name}</p>
-                                <p>вагон</p>
-                            </td>
-                            <td>
-                                <div>
-                                    <span>Места</span> <span>{c.seats.filter(s => s.available).length}</span>
-                                </div>
-                                {
-                                    carriageType === 'third' || carriageType === 'second'
-                                        ? <>
-                                            <div>
-                                                <span>Верхние</span> 
-                                                <span>{GetTopAndBottomSeatsCount(carriageType, c.seats)}</span>
-                                            </div>
-                                            <div>
-                                                <span>Нижние</span> <span></span>
-                                                <span>{GetTopAndBottomSeatsCount(carriageType, c.seats)}</span>
-                                            </div>
-                                        </>
-                                        : <></>
-                                }
-                            </td>
-                            <td>
-                                
-                            </td>
-                            <td>
-                                
-                            </td>
-                        </tr>
-                    )
-                }
-            </tbody>
-        </table>;
+        return <ChoosingSeatInCarriage filteredCarriages={filteredCarriages} carriageType={carriageType}/>
     }
 
     if (!props?.trainInfo) {

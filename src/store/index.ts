@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import directionReducer from "./directionSlice";
 import directionsResponseReducer from './directionsResponseSlice';
+import trainFormReducer from "./trainForm";
 
 const store =  configureStore({
     reducer: {
         direction: directionReducer,
-        directionsResponse: directionsResponseReducer
+        directionsResponse: directionsResponseReducer,
+        trainForm: trainFormReducer
     }
 });
 

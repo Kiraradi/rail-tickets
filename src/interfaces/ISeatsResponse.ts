@@ -1,6 +1,6 @@
 export interface ISeat {
     index: number
-    available: number
+    available: boolean
 }
 
 export interface ICoach {
