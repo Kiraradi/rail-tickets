@@ -26,7 +26,9 @@ export default function Seating() {
         direction = directions.items[Number(index)]
     }
 
-    
+    const goToPagePassengers = () => {
+        
+    }
     
     return (
         <div className="seating">
@@ -35,7 +37,7 @@ export default function Seating() {
             <>{direction && direction.departure ? <SeatsCard isDirectionForward={false} trainInfo={direction.departure}/> : null}</>
             <div className="seating-buttonBar">
                 <button 
-                    className={trainForm.status ? "seating-button" : "seating-button-blocked"}
+                    className={/*trainForm.status ? "seating-button" : "seating-button-blocked"*/"seating-button"}
                 >ДАЛЕЕ</button>
             </div>
         </div>

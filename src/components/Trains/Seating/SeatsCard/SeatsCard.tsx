@@ -10,6 +10,7 @@ import ChoosingSeatInCarriage from "./ChoosingSeatInCarriage/ChoosingSeatInCarri
 import './SeatsCard.css';
 import { ISeatsRequest } from "../../../../interfaces/ISeatsRequest";
 import { ISeat, ISeatsResponse } from "../../../../interfaces/ISeatsResponse";
+import { useAppSelector, useAppDispatch } from "../../../../hook";
 
 export interface ISeatsCard {
     isDirectionForward: boolean
@@ -74,6 +75,8 @@ export function SeatsCardDirectionInfo(info :IArrivalAndDeparture | undefined, i
 
 export default function SeatsCard(props: ISeatsCard ) {
     const navigator = useNavigate();
+    const trainForm = useAppSelector(state => state.trainForm);
+    const dispatch =  useAppDispatch()
 
     const carriageTypes = [
         { type:'fourth_class', text:'Сидячий' },
@@ -100,6 +103,14 @@ export default function SeatsCard(props: ISeatsCard ) {
             }
         }
     }
+    /*
+    // нужно продолжить метод изменения routa 
+    const changeTrainForm = () => {
+        if (props.isDirectionForward) {
+            const newTrainForm = {...trainForm}
+        }
+    }
+    */
 
     useEffect(()=> {
         getCarriages();
