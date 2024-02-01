@@ -2,6 +2,8 @@ import { IArrivalAndDeparture, IDirection, IFromAndTo } from "../../../../interf
 import moment from "moment";
 import { makeFirstLetterUppercase } from "../../../../services/makeFirstLetterUppercase";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../../../hook";
+import { goAhead } from "../../../../store/stepSlice";
 
 import './TrainCard.css'
 
@@ -41,6 +43,7 @@ export function DirectionInfo  (info: IArrivalAndDeparture | undefined, directio
 
 export default function TrainCard(props: ITrainCard) {
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const DirectionsInfo = () => {
         return (
@@ -99,6 +102,7 @@ export default function TrainCard(props: ITrainCard) {
                 <button 
                     className="mainSeatsInfo-button" 
                     onClick={()=> {
+                        dispatch(goAhead());
                         navigate(`/trains/${props.index}`);
                     }}
                 >Выбрать места</button> 

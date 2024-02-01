@@ -8,13 +8,14 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from '../../../hook';
 import { changeDirectionSearch } from '../../../store/directionSearchSlice';
 import moment from 'moment';
+import { IndicatorsContainerProps } from 'react-select';
+import Select from 'react-select/dist/declarations/src/Select';
+import { IDirectionsRequest } from '../../../interfaces/IDirectionsRequest';
+import { goToFirstPage } from '../../../store/stepSlice';
 
 import './SearchTrainsForm.css';
 import "react-datepicker/dist/react-datepicker.css";
 import './DatePicker.css';
-import { IndicatorsContainerProps } from 'react-select';
-import Select from 'react-select/dist/declarations/src/Select';
-import { IDirectionsRequest } from '../../../interfaces/IDirectionsRequest';
 
 export interface ISearchTrainsForm {
     class: string
@@ -65,6 +66,7 @@ export default function SearchTrainsForm(props: ISearchTrainsForm) {
             };
             
             dispatch(changeDirectionSearch(request));
+            dispatch(goToFirstPage());
             setFormData(initFormData);
             navigate('/trains')
         }

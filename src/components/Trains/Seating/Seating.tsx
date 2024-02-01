@@ -5,6 +5,7 @@ import SeatsCard from "./SeatsCard/SeatsCard";
 import { useNavigate } from "react-router-dom";
 import { initOrderForm } from "../../../store/orderFormSlice";
 import { useEffect, useState } from "react";
+import { goAhead } from "../../../store/stepSlice";
 
 import './Seating.css';
 
@@ -60,6 +61,7 @@ export default function Seating() {
                 <button 
                     className={isOrderFormValid() ? "seating-button" : "seating-button-blocked"}
                     onClick={()=> {
+                        dispatch(goAhead());
                         navigator(`/trains/${index}/order`);
                     }}
                 >Выбрать места</button> 

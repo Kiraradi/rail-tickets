@@ -1,10 +1,32 @@
-import { useAppSelector } from '../../../hook'
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../hook'
 import TrainCard from './TrainCard/TrainCard';
+import { stopLoading } from '../../../store/loadingSlice';
+import ApiService from '../../../services/ApiService';
+import { changeDirections } from '../../../store/directionsSlice';
 
 import './TrainList.css'
 
 export default function TrainList() {
+  const directionSearch = useAppSelector(state => state.directionSearch.directionSearch);
   const directions = useAppSelector(state => state.directions.directions);
+  const dispatch = useAppDispatch();
+
+  async function getDirections() {
+    if (directionSearch.from_city_id && directionSearch.to_city_id
+      && directionSearch.date_start && directionSearch.date_end) {
+
+      const data =  await ApiService.getDirections(directionSearch);
+      dispatch(changeDirections(data));
+      dispatch(stopLoading());      
+    }
+  }
+
+  useEffect(() => {
+    setTimeout(()=> {
+      getDirections()
+    }, 2000)
+  }, [directionSearch]);
 
   if (!directions || !directions.items) {
     return <div>Поездов нет</div>

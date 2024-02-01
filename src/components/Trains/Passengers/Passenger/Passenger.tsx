@@ -1,6 +1,6 @@
 
-export default function Passenger() {
+export default function Passenger(props: { index: number }) {
     return (
-        <div></div>
+        <div>{props.index + 1}</div>
     )
 }
