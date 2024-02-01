@@ -4,6 +4,7 @@ import TrainCard from './TrainCard/TrainCard';
 import { stopLoading } from '../../../store/loadingSlice';
 import ApiService from '../../../services/ApiService';
 import { changeDirections } from '../../../store/directionsSlice';
+import { useNavigate } from 'react-router-dom';
 
 import './TrainList.css'
 
@@ -11,6 +12,7 @@ export default function TrainList() {
   const directionSearch = useAppSelector(state => state.directionSearch.directionSearch);
   const directions = useAppSelector(state => state.directions.directions);
   const dispatch = useAppDispatch();
+  const navigator = useNavigate();
 
   async function getDirections() {
     if (directionSearch.from_city_id && directionSearch.to_city_id
@@ -27,6 +29,13 @@ export default function TrainList() {
       getDirections()
     }, 2000)
   }, [directionSearch]);
+
+  useEffect(() => {
+    if (directions.error) {
+      dispatch(stopLoading());
+      navigator('/');
+    }
+  }, [directions])
 
   if (!directions || !directions.items) {
     return <div>Поездов нет</div>

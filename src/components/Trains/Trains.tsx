@@ -3,12 +3,21 @@ import LoadingPage from './LoadingPage/loadingPage';
 import FilterMenu from './FilterMenu/FilterMenu';
 import LastTickets from './LastTickets/LastTickets';
 import Steps from './Steps/Steps';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 
 import './Trains.css';
+import { useEffect, useState } from 'react';
+import OrderMainInfo from './OrderMainInfo/OrderMainInfo';
 
 export default function Trains() {
   
+  let location = useLocation();
+  const [showFilterAndLastTickets, setShowFilterAndLastTickets ] = useState(true);
+
+  useEffect(() => {
+    setShowFilterAndLastTickets(location.pathname.includes('/order') ? false : true);
+  }, [location]);
+    
   const loading = useAppSelector(state => state.loading.loading);
 
   return (
@@ -16,8 +25,14 @@ export default function Trains() {
       <Steps/>
       <div className='trains-main'>
         <div className='trains-sidebar'>
-          <FilterMenu/>
-          <LastTickets/>
+          {
+            showFilterAndLastTickets
+              ? <>
+                <FilterMenu/>
+                <LastTickets/>
+              </>
+              : <OrderMainInfo></OrderMainInfo>
+          }
         </div>
         
         <Outlet/>

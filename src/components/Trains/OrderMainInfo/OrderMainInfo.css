@@ -1,0 +1,14 @@
+.orderMainInfo {
+    background-color: #3E3C41;
+    min-width: 360px;
+}
+
+.orderMainInfo-title {
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 35px;
+    letter-spacing: 0em;
+    color: #E5E5E5;
+    text-align: center;
+    border-bottom: 1px solid #E5E5E5;
+}

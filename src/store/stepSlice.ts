@@ -14,7 +14,7 @@ const stepSlice = createSlice({
         goAhead(state) {
             state.step++;
         },
-        goBack(state) {
+        goPreviousStep(state) {
             state.step--;
         },
         init(state) {
@@ -26,6 +26,6 @@ const stepSlice = createSlice({
     }
 })
 
-export const { goAhead, goBack, init, goToFirstPage } = stepSlice.actions;
+export const { goAhead, goPreviousStep, init, goToFirstPage } = stepSlice.actions;
 
 export default stepSlice.reducer;
