@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import moment from "moment";
 import { useAppSelector } from '../../../../hook';
 import { IArrivalAndDeparture } from '../../../../interfaces/IDirectionsResponse';
+import { makeFirstLetterUppercase } from '../../../../services/makeFirstLetterUppercase';
 
 import './FromAndTo.css';
 
@@ -26,6 +27,13 @@ export default function FromAndTo(props: IFromAndTo) {
                     setDirection(direction.arrival);
                 }
             }
+            else {
+                const direction = directions.items.find(d => orderForm.departure && d.departure && d.departure._id === orderForm.departure.route_direction_id);
+
+                if (direction && direction.departure) {
+                    setDirection(direction.departure);
+                }
+            }
         }
     }, [ directions, orderForm ])
 
@@ -42,8 +50,7 @@ export default function FromAndTo(props: IFromAndTo) {
             <div className='fromAndTo-header'>
                 <img className='fromAndTo-img' src={props.isArriaval?'/images/toIcon.png':'/images/fromIcon.png'}/>
                 <div className='fromAndTo-title-wrapper'>
-                    <h2 className='fromAndTo-title'>{props.isArriaval? 'Туда' :'Обратно'}</h2>
-                    <span className='fromAndTo-date'>{moment(direction.from?.datetime).format('DD.MM.YYYY')}</span>
+                    <h2 className='fromAndTo-title'>{props.isArriaval? 'Туда' :'Обратно'} <span className='fromAndTo-date'>{moment(direction.from?.datetime).format('DD.MM.YYYY')}</span></h2>
                 </div>
                 <div>
                     <div onClick={onClickButton} className={`fromAndTo-button ${isOpen? 'fromAndTo-button-open':'fromAndTo-button-close'}`}></div>
@@ -57,27 +64,33 @@ export default function FromAndTo(props: IFromAndTo) {
                 <div className='row-info'>
                     <div className='info-title'>Направление</div>
                     <div>
-                        <div className='info-text'>{direction.from?.city?.name}</div>
-                        <div className='info-text'>{direction.to?.city?.name}</div>
+                        <div className='info-text'>{makeFirstLetterUppercase(direction.from?.city?.name)}</div>
+                        <div className='info-text'>{makeFirstLetterUppercase(direction.to?.city?.name)}</div>
                     </div>
                 </div>
                 <div className='row-info'>
                     <div>
-                        <div className='info-text'>{moment(direction.from?.datetime).format('HH:mm')}</div>
-                        <div className='info-title'>{moment(direction.from?.datetime).format('DD.MM.YYYY')}</div>
+                        <div className='info-text left'>{moment(direction.from?.datetime).format('HH:mm')}</div>
+                        <div className='info-title left'>{direction.from?.datetime ? moment(direction.from?.datetime * 1000).format('DD.MM.YYYY') : null}</div>
+                    </div>
+                    <div className="duration-wrapper">
+                        <div className="directionInfo-duration">{moment(direction.duration).format('HH:mm')}</div>
+                        <div className='direction-wrapper'>
+                            <img src={`/images/vector${props.isArriaval ? 'To' : 'From'}.png`}/>
+                        </div>
                     </div>
                     <div>
                         <div className='info-text'>{moment(direction.to?.datetime).format('HH:mm')}</div>
-                        <div className='info-title'>{moment(direction.to?.datetime).format('DD.MM.YYYY')}</div>
+                        <div className='info-title'>{direction.to?.datetime ? moment(direction.to?.datetime * 1000).format('DD.MM.YYYY') : null}</div>
                     </div>
                 </div>
                 <div className='row-info'>
                     <div>
-                        <div className='info-text'>{direction.from?.city?.name}</div>
-                        <div className='info-title'>{direction.from?.railway_station_name}</div>
+                        <div className='info-text left'>{makeFirstLetterUppercase(direction.from?.city?.name)}</div>
+                        <div className='info-title left'>{direction.from?.railway_station_name}</div>
                     </div>
                     <div>
-                        <div className='info-text'>{direction.to?.city?.name}</div>
+                        <div className='info-text'>{makeFirstLetterUppercase(direction.to?.city?.name)}</div>
                         <div className='info-title'>{direction.to?.railway_station_name}</div>
                     </div>
                 </div>

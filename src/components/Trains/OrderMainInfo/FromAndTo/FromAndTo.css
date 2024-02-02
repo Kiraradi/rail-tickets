@@ -1,7 +1,7 @@
 .fromAndTo-wrapper {
     display: flex;
     flex-direction: column;
-    padding: 12px 28px ;
+    padding: 22px 28px;
     border-bottom: 1px solid #E5E5E5;
 }
 
@@ -50,7 +50,6 @@
 }
 
 .fromAndTo-content-wrapper {
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     visibility: hidden;
@@ -58,7 +57,7 @@
     word-break: break-all;
     height: 0;
     width: 100%;
-    gap: 22px;
+    gap: 18px;
 }
 
 .fromAndTo-content-wrapper-open {
@@ -73,12 +72,36 @@
     justify-content: space-between;
 }
 
+.duration-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.direction-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.row-info:first-child {
+    padding-top: 32px;
+}
+
+.row-info:nth-child(3) {
+    padding-top: 46px;
+}
+
 .info-title {
     font-size: 18px;
     font-weight: 400;
     line-height: 21px;
     letter-spacing: 0em;
     color: #E5E5E5;
+    text-align: right;
+
+    &.left {
+        text-align: left;
+    }
 }
 
 .info-text {
@@ -88,4 +111,8 @@
     letter-spacing: 0em;
     color: #FFFFFF;
     text-align: right;
+
+    &.left {
+        text-align: left;
+    }
 }

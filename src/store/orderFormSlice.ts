@@ -19,14 +19,14 @@ const orderFormSlice = createSlice({
         },
         initOrderForm(state, action: PayloadAction<IDirection>) {
 
-            if (action.payload.arrival) {
+            if (action.payload?.arrival) {
                 state.orderForm.arrival = {
                     route_direction_id: action.payload.arrival._id,
                     seats: []
                 }    
             }
 
-            if (action.payload.departure) {
+            if (action.payload?.departure) {
                 state.orderForm.departure = {
                     route_direction_id: action.payload.departure._id,
                     seats: []

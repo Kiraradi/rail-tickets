@@ -2,9 +2,10 @@
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../hook';
 import FromAndTo from './FromAndTo/FromAndTo';
+import { IDirection } from '../../../interfaces/IDirectionsResponse';
+import PassengersInfo from './PassengersInfo/PassengersInfo';
 
 import './OrderMainInfo.css';
-import { IDirection } from '../../../interfaces/IDirectionsResponse';
 
 export default function OrderMainInfo() {
     const directions = useAppSelector(state => state.directions.directions);
@@ -30,9 +31,10 @@ export default function OrderMainInfo() {
 
     return (
         <div className='orderMainInfo'>
-            <h2 className='orderMainInfo-title'>Детали поездки</h2>
+            <h2 className='orderMainInfo-title'>ДЕТАЛИ ПОЕЗДКИ</h2>
             { direction.arrival ? <FromAndTo isArriaval={true}/> : null }
             { direction.departure ? <FromAndTo isArriaval={false}/> : null }
+            <PassengersInfo></PassengersInfo>
         </div>
     )
 }
