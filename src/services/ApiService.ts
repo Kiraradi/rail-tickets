@@ -97,4 +97,20 @@ export default class ApiService {
             console.log("Ошибка HTTP: " + response.status);
         }
     } 
+
+    static async subscribe(email: string) {
+        const response = await fetch(`${URL}/subscribe?email=${email}`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              method: "POST",
+        });
+
+        if (response.ok) {
+            await response.json()
+        } else {
+            console.log("Ошибка HTTP: " + response.status);
+        }
+    }
 }
