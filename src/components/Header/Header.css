@@ -8,7 +8,6 @@
     position: relative;
     z-index: 0;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -33,6 +32,11 @@
 
 .header-trains {
     background-image: url(../../img/Header-Trains.png);
+}
+
+.header-successful-buy {
+    background-image: url(../../img/successful-buy-header.png);
+    min-height: 800px;
 }
 
 .searchTrainsForm-header-main {

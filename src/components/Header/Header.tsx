@@ -12,7 +12,13 @@ export default function Header() {
 
     useEffect(() => {
         if (location.pathname !== '/') {
-            setClassName('header-trains');
+            if (location.pathname === '/successful-buy') {
+                setClassName('header-successful-buy');
+            }
+            else {
+                setClassName('header-trains');
+            }
+            
         } else {
             setClassName(defaultClass)
         }
@@ -26,13 +32,9 @@ export default function Header() {
                     <Routes>
                         <Route path="/" element={<h1 className='header-title'>Вся жизнь - <p className='header-title-p'>путешествие!</p></h1>}/>
                     </Routes>
-                    <SearchTrainsForm class={className}></SearchTrainsForm>
+                    { className !== 'header-successful-buy' ? <SearchTrainsForm class={className}></SearchTrainsForm> : null }
                 </div>
-                
             </>
         </header>
     )
 }
-
-
-

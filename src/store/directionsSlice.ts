@@ -19,10 +19,17 @@ const directionsSlice = createSlice({
     reducers: {
         changeDirections(state, action: PayloadAction<IDirectionsResponse>) {
             state.directions = {...action.payload};
+        },
+        initDirections(state) {
+            state.directions = {
+                total_count: 0,
+                items: [],
+                error: null
+            };
         }
     }
 })
 
-export const { changeDirections } = directionsSlice.actions;
+export const { changeDirections, initDirections } = directionsSlice.actions;
 
 export default directionsSlice.reducer;

@@ -4,10 +4,10 @@ import FilterMenu from './FilterMenu/FilterMenu';
 import LastTickets from './LastTickets/LastTickets';
 import Steps from './Steps/Steps';
 import { Outlet, useLocation } from 'react-router-dom';
-
-import './Trains.css';
 import { useEffect, useState } from 'react';
 import OrderMainInfo from './OrderMainInfo/OrderMainInfo';
+
+import './Trains.css';
 
 export default function Trains() {
   

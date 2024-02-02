@@ -12,6 +12,7 @@ import { IndicatorsContainerProps } from 'react-select';
 import Select from 'react-select/dist/declarations/src/Select';
 import { IDirectionsRequest } from '../../../interfaces/IDirectionsRequest';
 import { goToFirstPage } from '../../../store/stepSlice';
+import { startLoading } from '../../../store/loadingSlice';
 
 import './SearchTrainsForm.css';
 import "react-datepicker/dist/react-datepicker.css";
@@ -65,6 +66,7 @@ export default function SearchTrainsForm(props: ISearchTrainsForm) {
                 date_end: moment(formData.dateTo).format('YYYY-MM-DD') 
             };
             
+            dispatch(startLoading());
             dispatch(changeDirectionSearch(request));
             dispatch(goToFirstPage());
             setFormData(initFormData);

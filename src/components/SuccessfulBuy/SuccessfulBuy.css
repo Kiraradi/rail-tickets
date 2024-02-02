@@ -1,0 +1,162 @@
+.SuccessfulBuy {
+    position: relative;
+    min-height: 1090px;
+}
+
+.SuccessfulBuy-wrapper {
+    position: absolute;
+    top: -330px;
+    padding: 0 256px;
+    width: 100%;
+}
+
+.SuccessfulBuy-title {
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 84px;
+    letter-spacing: 0em;
+    color: #FFFFFF;
+}
+
+.SuccessfulBuy-mainInfo {
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 2px 0px #00000040;
+    margin-top: 30px;
+}
+
+.SuccessfulBuy-mainInfo-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 82px;
+}
+
+.SuccessfulBuy-mainInfo-header-first {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 42px;
+    letter-spacing: 0em;
+    color: #3E3C41;
+}
+
+.SuccessfulBuy-mainInfo-header-second {
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 42px;
+    letter-spacing: 0em;
+    color: #928F94;
+}
+
+.SuccessfulBuy-mainInfo-header-sum {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.SuccessfulBuy-mainInfo-ticket-info {
+    background-color: #F4F3F6;
+    padding: 40px 325px;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 146px;
+    justify-content: center;
+}
+
+.SuccessfulBuy-mainInfo-ticket-info-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 156px;
+    text-align: center;
+}
+
+.SuccessfulBuy-mainInfo-ticket-info-item-img {
+    width: 155px;
+    height: 155px;
+    margin-bottom: 11px;
+}
+
+.SuccessfulBuy-mainInfo-ticket-info-item-text {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0em;
+    color: #292929;
+}
+
+.SuccessfulBuy-mainInfo-ticket-body {
+    padding: 95px 205px;
+}
+
+.SuccessfulBuy-mainInfo-ticket-body-title {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 42px;
+    letter-spacing: 0em;
+    color: #292929;
+    margin-bottom: 51px;
+}
+
+.SuccessfulBuy-mainInfo-ticket-body-text {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    color: #292929;
+}
+
+.SuccessfulBuy-text-strong {
+    font-weight: 900;
+    margin-top: 100px;
+}
+
+.SuccessfulBuy-mainInfo-footer {
+    padding: 50px 78px;
+    background-color: #FFA800E0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.SuccessfulBuy-mainInfo-footer-text {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 28px;
+    color: #292929;
+}
+
+.SuccessfulBuy-mainInfo-footer-grade {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 20px;
+}
+
+.SuccessfulBuy-mainInfo-footer-button {
+    color: #292929;
+    border: 1px solid #3E3C41;
+    background: transparent;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 5px;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+}
+
+.SuccessfulBuy-mainInfo-footer-button:hover {
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    background-color: #FFFFFF;
+}
+
+.SuccessfulBuy-mainInfo-footer-button:active {
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+}

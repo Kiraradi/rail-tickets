@@ -13,10 +13,13 @@ const loadingSlice = createSlice({
     reducers: {
         stopLoading(state) {
             state.loading = false;
+        },
+        startLoading(state) {
+            state.loading = true;
         }
     }
 })
 
-export const { stopLoading } = loadingSlice.actions;
+export const { stopLoading, startLoading } = loadingSlice.actions;
 
 export default loadingSlice.reducer;

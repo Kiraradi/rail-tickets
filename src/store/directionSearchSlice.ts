@@ -14,10 +14,16 @@ const directionSearchSlice = createSlice({
     reducers: {
         changeDirectionSearch(state, action: PayloadAction<IDirectionsRequest> ) {
             state.directionSearch = {...action.payload};
+        },
+        initDirectionSearch(state) {
+            state.directionSearch = {
+                from_city_id: '',
+                to_city_id: ''
+            }
         }
     }
 })
 
-export const { changeDirectionSearch } = directionSearchSlice.actions;
+export const { changeDirectionSearch, initDirectionSearch } = directionSearchSlice.actions;
 
 export default directionSearchSlice.reducer;
