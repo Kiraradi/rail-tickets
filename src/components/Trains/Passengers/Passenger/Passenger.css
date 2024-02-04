@@ -1,0 +1,234 @@
+.passenger-form-wrapper {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    background-color: #FFFFFF;
+    border: 1px solid #928F94;
+    gap: 15px;
+}
+
+.passenger-form-header {
+    padding: 40px 25px;
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    background-color: #F9F9F9;
+    border-bottom: 1px solid #928F94;
+}
+
+.passenger-form-header-button-close, .passenger-form-header-button-open {
+    border: 2px solid #928F94;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #F9F9F9;
+    color: #928F94 ;
+    font-size: 20px;
+    font-weight: 500;
+    transition: all 150ms ease-in;
+}
+
+.passenger-form-header-button-open {
+    border: 2px solid #FFA800;
+    color: #FFA800 ;
+}
+
+.passenger-form-header-title {
+    width: 100%;
+    font-size: 30px;
+    font-weight: 400;
+    color: #292929;
+}
+
+.passenger-form-header-remove-form {
+    width: 12px;
+    height: 12px;
+    background-image: url(../../../../img/remove-form.png);
+    border: none;
+    cursor: pointer;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.passenger-form-select-wrapper {
+    padding: 40px 25px;
+    display: flex;
+    width: 100%;
+}
+
+.passenger-form-select {
+    max-width: 280px;
+    height: 50px;
+    width: 100%;
+}
+
+.passenger-form-passenger-info {
+    display: flex;
+    padding: 0 25px;
+    flex-direction: column;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #C4C4C4;
+}
+.passenger-form-passenger-info-fullName {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.passenger-form-passenger-info-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 15px;
+}
+
+.passenger-form-passenger-info-input-label {
+    color: #928F94;
+}
+
+.passenger-form-passenger-info-input {
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #928F94;
+    padding: 0 10px;
+}
+
+.passenger-form-passenger-info-genderAndBirthDate {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.passenger-form-passenger-info-gender-wrapper {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.passenger-form-passenger-info-genderAndBirthDate-title, .passenger-form-passenger-documents-title, .field-title {
+    color: #928F94;
+    font-weight: 400;
+}
+
+.passenger-form-passenger-info-gender-toggle {
+    display: flex;
+    width: 205px;
+    height: 50px;
+    border: 1px solid #928F94;
+    border-radius: 5px;
+
+}
+
+.passenger-form-passenger-info-gender-menGender, .passenger-form-passenger-info-gender-womenGender {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 900;
+    color: #000000;
+    flex-grow: 1;
+    cursor: pointer;
+}
+.passenger-form-passenger-info-gender-toggle-border {
+    width: 1px;
+    background-color: #928F94;
+}
+
+.gender-active {
+    background-color: #FFA800;
+}
+
+.passenger-form-passenger-info-birthDate-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.passenger-form-passenger-info-birthDate {
+    max-width: 250px;
+    width: 100%;
+    border: 1px solid #928F94;
+    border-radius: 5px;
+}
+
+.birthDate-custom-input {
+    height: 50px;
+    width: 100%;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.passenger-form-passenger-info-limitedMobility {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.passenger-form-passenger-info-limitedMobility-checkbox {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #928F94;
+    border-radius: 5px;    
+    cursor: pointer;
+}
+
+.passenger-form-passenger-info-limitedMobility-text {
+    font-size: 18px;
+}
+
+.passenger-form-passenger-documents {
+    display: flex;
+    padding: 0 25px;
+    width: 100%;
+    gap: 15px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #C4C4C4;
+}
+
+.passenger-form-passenger-documents-select-wrapper, .fieldForDocument {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 300px;
+    width: 100%;
+}
+
+
+.passenger-form-passenger-documents-select {
+    width: 100%;
+}
+
+.field-input {
+    height: 50px;
+    border: 1px solid #928F94;
+    border-radius: 5px;
+    padding: 0 15px;
+    font-size: 18px;
+    color: #C4C4C4;
+}
+
+.form-button-wrapper {
+    display: flex;
+    padding: 15px 25px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.form-button {
+    font-size: 24px;
+    font-weight: 700;
+    color: #292929;
+    padding: 12px 25px;
+    border: 1px solid #292929;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+    background-color: #FFFFFF;
+}
+
+.form-button:hover {
+    color: #FFA800;
+}
