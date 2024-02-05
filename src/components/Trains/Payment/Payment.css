@@ -1,0 +1,107 @@
+.Payment {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #FFFFFF;
+    border: 1px solid #928F94;
+}
+
+.payment-form-wrapper {
+    gap: 15px;
+}
+
+.payment-form-header {
+    padding: 40px 25px;
+    background-color: #F9F9F9;
+    border-bottom: 1px solid #928F94;
+}
+
+.payment-form-header-title {
+    font-size: 30px;
+    font-weight: 400;
+    color: #292929;
+}
+
+.payment-form-passenger-info {
+    display: flex;
+    padding: 0 25px;
+    flex-direction: column;
+    gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #C4C4C4;
+}
+
+.payment-form-passenger-info-fullName {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.payment-form-passenger-info-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 15px;
+}
+
+.payment-form-passenger-info-input-label {
+    color: #928F94;
+}
+
+.payment-form-passenger-info-input {
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #928F94;
+    padding: 0 10px;
+}
+
+.payment-form-passenger-info-genderAndBirthDate {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.payment-form-passenger-info-gender-wrapper {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.payment-form-passenger-info-genderAndBirthDate-title, .payment-form-passenger-documents-title, .field-title {
+    color: #928F94;
+    font-weight: 400;
+}
+
+.payment-form-passenger-info-limitedMobility {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.payment-form-passenger-info-limitedMobility-checkbox {
+    width: 28px;
+    height: 28px;
+    border: 1px solid #928F94;
+    border-radius: 5px;    
+    cursor: pointer;
+}
+
+.payment-form-passenger-info-limitedMobility-text {
+    font-size: 18px;
+}
+
+.form-button {
+    font-size: 24px;
+    font-weight: 700;
+    color: #292929;
+    padding: 12px 25px;
+    border: 1px solid #292929;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+    background-color: #FFFFFF;
+}
+
+.form-button:hover {
+    color: #FFA800;
+}

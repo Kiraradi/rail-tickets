@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IOrderRequest, IPersonInfo, ISeatOrder } from '../interfaces/IOrderRequest';
+import { IOrderRequest, IPersonInfo, ISeatOrder, IUser } from '../interfaces/IOrderRequest';
 import { IDirection } from '../interfaces/IDirectionsResponse';
 
 export interface IError {
@@ -109,10 +109,13 @@ const orderFormSlice = createSlice({
         },
         cleanErrorsByIndex(state, action: PayloadAction<number>) {
             state.errors = state.errors.filter(error => error.index !== action.payload);
+        },
+        setUser(state, action: PayloadAction<IUser>) {
+            state.orderForm.user = action.payload;
         }
     }
 })
 
-export const { changeOrderForm, cleanOrderForm, initOrderForm, cleanOrderFormSeatsByDirection, setSeats, setPersonInfo, setErrors, cleanErrors, cleanErrorsByIndex } = orderFormSlice.actions;
+export const { changeOrderForm, cleanOrderForm, initOrderForm, cleanOrderFormSeatsByDirection, setSeats, setPersonInfo, setErrors, cleanErrors, cleanErrorsByIndex, setUser } = orderFormSlice.actions;
 
 export default orderFormSlice.reducer;

@@ -15,7 +15,7 @@ export default function Trains() {
   const [showFilterAndLastTickets, setShowFilterAndLastTickets ] = useState(true);
 
   useEffect(() => {
-    setShowFilterAndLastTickets(location.pathname.includes('/passengers') ? false : true);
+    setShowFilterAndLastTickets(location.pathname.includes('/passengers') || location.pathname.includes('/payment') ? false : true);
   }, [location]);
     
   const loading = useAppSelector(state => state.loading.loading);

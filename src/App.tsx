@@ -7,9 +7,9 @@ import TrainList from "./components/Trains/TrainList/TrainList";
 import Seating from "./components/Trains/Seating/Seating";
 import Passengers from "./components/Trains/Passengers/Passengers";
 import SuccessfulBuy from "./components/SuccessfulBuy/SuccessfulBuy";
+import Payment from "./components/Trains/Payment/Payment";
 
 import './App.css';
-
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
             <Route index element={<TrainList/>}></Route>
             <Route path=":index" element={<Seating/>}/>
             <Route path=":index/passengers" element={<Passengers/>}/>
+            <Route path=":index/payment" element={<Payment/>}/>
           </Route>
           <Route path="/successful-buy" element={<SuccessfulBuy/>}></Route>
         </Routes>
