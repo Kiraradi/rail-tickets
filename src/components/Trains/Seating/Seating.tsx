@@ -32,11 +32,11 @@ export default function Seating() {
             && orderForm.arrival.route_direction_id != null
             && orderForm.arrival.seats != null
             && orderForm.arrival.seats.length > 0
-            ||
-            orderForm.departure != null
+            && orderForm.departure != null
             && orderForm.departure.route_direction_id != null
             && orderForm.departure.seats != null
             && orderForm.departure.seats.length > 0
+            && orderForm.arrival.seats.length === orderForm.departure.seats.length
     }
 
     if (directions.error) {
@@ -62,7 +62,7 @@ export default function Seating() {
                     className={isOrderFormValid() ? "seating-button" : "seating-button-blocked"}
                     onClick={()=> {
                         dispatch(goAhead());
-                        navigator(`/trains/${index}/order`);
+                        navigator(`/trains/${index}/passengers`);
                     }}
                 >Выбрать места</button> 
             </div>

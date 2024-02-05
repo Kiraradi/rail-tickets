@@ -18,7 +18,7 @@ export function TimeAndStationInfo (info: IFromAndTo | undefined)  {
    
     return (
         <div className="timeAndStationInfo">
-            <div className="timeAndStationInfo-time">{moment(info.datetime).format('HH:MM')}</div>
+            <div className="timeAndStationInfo-time">{moment(info.datetime).format('HH:mm')}</div>
             <div className="timeAndStationInfo-city">{makeFirstLetterUppercase(info.city?.name)}</div>
             <div className="timeAndStationInfo-station">{makeFirstLetterUppercase(info.railway_station_name) + ' вокзал'}</div>
         </div>);
@@ -33,7 +33,7 @@ export function DirectionInfo  (info: IArrivalAndDeparture | undefined, directio
         <div className="directionInfo">
             {TimeAndStationInfo(info.from)}
             <div className="directionInfo-duration-wrapper">
-                <div className="directionInfo-duration">{moment(info.duration).format('HH:MM')}</div>
+                <div className="directionInfo-duration">{moment(info.duration).format('HH:mm')}</div>
                 <img src={`/images/vector${direction === "to"? 'To' : 'From'}.png`}/>
             </div>
             {TimeAndStationInfo(info.to)}   

@@ -21,7 +21,7 @@ function App() {
           <Route path="/trains" element={<Trains/>}>
             <Route index element={<TrainList/>}></Route>
             <Route path=":index" element={<Seating/>}/>
-            <Route path=":index/order" element={<Passengers/>}/>
+            <Route path=":index/passengers" element={<Passengers/>}/>
           </Route>
           <Route path="/successful-buy" element={<SuccessfulBuy/>}></Route>
         </Routes>

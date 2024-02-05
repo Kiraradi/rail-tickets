@@ -1,68 +1,139 @@
 import Select, {StylesConfig} from 'react-select';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ISelectOption } from '../../../Header/SearchTrainsForm/SearchTrainsForm';
 import DatePicker from "react-datepicker";
 import ru from 'date-fns/locale/ru';
-import moment from 'moment';
+import { useAppDispatch, useAppSelector } from '../../../../hook';
+import { cleanErrorsByIndex, setPersonInfo } from '../../../../store/orderFormSlice';
+import { IPersonInfo } from '../../../../interfaces/IOrderRequest';
+import moment from "moment";
 
 import './Passenger.css';
 
+export interface ISelectOptionForm {
+    value: string,
+    label: string
+}
+
+export interface IPassengerForm {
+    is_adult: ISelectOptionForm
+    first_name: string
+    last_name: string
+    patronymic?: string
+    gender: boolean
+    birthday: Date | null
+    document_type: ISelectOptionForm
+    document_data: {
+        series: string,
+        number: string
+    },
+    limitedMobility: boolean
+}
 
 export default function Passenger(props: { index: number }) {
 
-    const optionsSelect = [
-        { value: 'adult', label: 'Взрослый'},
-        { value: 'child', label: 'Детский' }
+    const ages = [
+        { value: 'true', label: 'Взрослый'},
+        { value: 'false', label: 'Детский' }
     ];
 
-    const pessangerDocumentsType = [
+    const documentTypes = [
         { value: 'passport', label: 'Паспорт РФ'},
         { value: 'birthCertificate', label: 'Свидетельство о рождении' }
     ];
-    const initPassengerInfo = {
-        name:'',
-        lastname:'',
-        patronymic: '',
-        menGender: false,
-        womenGender: false,
-        birthDate: null as Date | null,
-        limitedMobility: false
-    }
-
-    const initDocument = {
-        series: '',
-        number: ''
-    }
+    
+    const orderForm = useAppSelector(state => state.orderForm.orderForm);
+    const errors = useAppSelector(state => state.orderForm.errors)
+        .filter(error => error.index === props.index);
+    const dispatch = useAppDispatch();
 
     const [isFormOpen, setFormOpen] = useState(false);
-    const [selectedOption, setSelectedOption] = useState(optionsSelect[0]);
-    const [documentType, setDocumentType] = useState(pessangerDocumentsType[0]);
-    const [passengerInfo,setPassengerInfo] =useState(initPassengerInfo);
-    const [document, setDocument] = useState(initDocument)
+    const [passengerInfo, setPassengerInfo] = useState<IPassengerForm | null>();
 
+    useEffect(() => {
+        if (!passengerInfo) {
+            const person_info = orderForm.arrival?.seats[props.index].person_info;
+            let document_data = [] as string[];
+
+            if (person_info?.document_data) {
+                document_data = person_info?.document_data.split(' ');
+            }
+
+            setPassengerInfo({
+                is_adult: person_info?.is_adult 
+                    ? (ages.find(age => age.value == person_info?.is_adult.toString()) ?? ages[0])
+                    : ages[0],
+                first_name: person_info?.first_name ?? '',
+                last_name: person_info?.last_name ?? '',
+                patronymic: person_info?.patronymic ?? '',
+                gender: person_info?.gender ?? false,
+                birthday: person_info?.birthday ? new Date(person_info?.birthday) : null,
+                document_type: person_info?.document_type
+                    ? (documentTypes.find(docType => docType.value === person_info?.document_type) ?? documentTypes[0])
+                    : documentTypes[0],
+                document_data: document_data && document_data.length === 2 
+                    ? {
+                        series: document_data[0],
+                        number: document_data[1]
+                    }
+                    : document_data && document_data.length === 1
+                    ? {
+                        series: '',
+                        number: document_data[0]
+                    }
+                    : {
+                        series: '',
+                        number: ''
+                    },
+                limitedMobility: false
+            });    
+        }
+    }, [ orderForm ])
+
+    useEffect(() => {
+        if (passengerInfo) {
+            const document_data = passengerInfo.document_type.value ===documentTypes[0].value
+            ? `${passengerInfo.document_data.series} ${passengerInfo.document_data.number}`
+            : passengerInfo.document_data.number;
+
+            const personInfo: IPersonInfo = {
+                is_adult: Boolean(passengerInfo.is_adult.value),
+                first_name: passengerInfo.first_name,
+                last_name: passengerInfo.last_name,
+                patronymic: passengerInfo.patronymic,
+                gender: passengerInfo.gender,
+                birthday: passengerInfo.birthday ? moment(passengerInfo.birthday).format('YYYY-MM-DD') : '',
+                document_type: passengerInfo.document_type.value,
+                document_data: document_data
+            }
+        
+            dispatch(setPersonInfo({ index: props.index, personInfo: personInfo }))
+        }
+    }, [ passengerInfo ])
+    
     const handlerChange = (name: string, value: ISelectOption | Date | string | boolean) => {
-        setPassengerInfo({...passengerInfo, [name]: value});
+        if (passengerInfo) {
+            setPassengerInfo({...passengerInfo, [name]: value});
+        }
     };
 
-    const changeDocument = (name: string, value: string) => {
-        setDocument({...document, [name]: value});
-    }
+    const handlerDocumentChange = (name: string, value: string) => {
+        if (passengerInfo && passengerInfo.document_data) {
+            const document_data = {...passengerInfo.document_data, [name]: value };
+            setPassengerInfo({...passengerInfo, ['document_data']: document_data});
+        }
+    };
 
     const colourStyles: StylesConfig<ISelectOption> = {
         control: (styles) => ({ ...styles, height: '50px', fontSize: '24px', border: '1px solid #928F94'}),
     };
 
-    const toggleGender = (type:string) => {
-        if (type === 'men') {
-            setPassengerInfo({...passengerInfo, menGender: true, womenGender: false })
-        }
-        else {
-            setPassengerInfo({...passengerInfo, menGender: false, womenGender: true })
-        }
-    } 
-
     const fieldsForDocuments = () => {
-        if (documentType.value === 'passport') {
+        if (!passengerInfo) {
+            return <></>;
+        }
+
+        if (passengerInfo.document_type?.value === 'passport') {
             return <>
                 <div className='fieldForDocument'>
                     <h3 className='field-title'>Серия</h3>
@@ -70,9 +141,8 @@ export default function Passenger(props: { index: number }) {
                         className='field-input'
                         type='text'
                         name='series'
-                        value={document.series}
-                        required
-                        onChange={(e) => changeDocument('series', e.target.value)}
+                        value={passengerInfo.document_data.series}
+                        onChange={(e) => handlerDocumentChange('series', e.target.value)}
                         placeholder='_ _ _ _'
                         maxLength={4}
                     />
@@ -83,36 +153,35 @@ export default function Passenger(props: { index: number }) {
                         className='field-input'
                         type='text'
                         name='number'
-                        value={document.number}
-                        required
-                        onChange={(e) => changeDocument('number', e.target.value)}
+                        value={passengerInfo.document_data.number}
+                        onChange={(e) => handlerDocumentChange('number', e.target.value)}
                         placeholder='_ _ _ _ _ _'
                         maxLength={6}
                     />
                 </div>
             </>
         }
+
         return <div className='fieldForDocument'>
-                    <h3 className='field-title'>Номер</h3>
-                    <input 
-                        className='field-input'
-                        type='text'
-                        name='number'
-                        value={document.number}
-                        required
-                        onChange={(e) => changeDocument('number', e.target.value)}
-                        placeholder='12 символов'
-                        maxLength={12}
-                    />
-                </div>
+            <h3 className='field-title'>Номер</h3>
+            <input 
+                className='field-input'
+                type='text'
+                name='number'
+                value={passengerInfo.document_data.number}
+                onChange={(e) => handlerDocumentChange('number', e.target.value)}
+                placeholder='12 символов'
+                maxLength={12}
+            />
+        </div>
     } 
 
     const customInput = () : React.ReactNode => {
         return <input className="birthDate-custom-input"/>
-    }  
+    }
 
-    const formCheck = () => {
-
+    if (!passengerInfo) {
+        return <></>;
     }
 
     return (
@@ -125,17 +194,16 @@ export default function Passenger(props: { index: number }) {
                     {isFormOpen ? '-' : '+'}
                 </button>
                 <h2 className='passenger-form-header-title'>{`Пассажир ${props.index + 1}`}</h2>
-                <button className='passenger-form-header-remove-form'></button>
             </div>
             <>{isFormOpen 
                 ? <>
                    <div className='passenger-form-select-wrapper'>
                         <Select 
-                        className='passenger-form-select'
-                        options={optionsSelect}
-                        onChange={(data) => {setSelectedOption(data as ISelectOption)}}
-                        value={selectedOption}
-                        styles={colourStyles}
+                            className='passenger-form-select'
+                            options={ages}
+                            onChange={(data) => {handlerChange('is_adult', data as ISelectOption) }}
+                            value={passengerInfo.is_adult}
+                            styles={colourStyles}
                     />
                     </div>
                     <div className='passenger-form-passenger-info'>
@@ -146,9 +214,8 @@ export default function Passenger(props: { index: number }) {
                                         className='passenger-form-passenger-info-input'
                                         type='text'
                                         name='lastname'
-                                        value={passengerInfo.lastname}
-                                        required
-                                        onChange={(e) => handlerChange('lastname', e.target.value)}
+                                        value={passengerInfo.last_name}
+                                        onChange={(e) => handlerChange('last_name', e.target.value)}
                                     /> 
                             </div>
                             <div className='passenger-form-passenger-info-input-wrapper'>
@@ -157,9 +224,8 @@ export default function Passenger(props: { index: number }) {
                                         className='passenger-form-passenger-info-input'
                                         type='text'
                                         name='name'
-                                        value={passengerInfo.name}
-                                        required
-                                        onChange={(e) => handlerChange('name', e.target.value)}
+                                        value={passengerInfo.first_name}
+                                        onChange={(e) => handlerChange('first_name', e.target.value)}
                                     /> 
                             </div>
                             <div className='passenger-form-passenger-info-input-wrapper'>
@@ -169,7 +235,6 @@ export default function Passenger(props: { index: number }) {
                                         type='text'
                                         name='patronymic'
                                         value={passengerInfo.patronymic}
-                                        required
                                         onChange={(e) => handlerChange('patronymic', e.target.value)}
                                     /> 
                             </div>
@@ -179,13 +244,13 @@ export default function Passenger(props: { index: number }) {
                                 <h3 className='passenger-form-passenger-info-genderAndBirthDate-title'>Пол</h3>
                                 <div className='passenger-form-passenger-info-gender-toggle'>
                                     <div 
-                                        className={`passenger-form-passenger-info-gender-menGender ${passengerInfo.menGender ? 'gender-active' : ''}`}
-                                        onClick={() => {toggleGender('men')}}
+                                        className={`passenger-form-passenger-info-gender-menGender ${passengerInfo.gender ? 'gender-active' : ''}`}
+                                        onClick={() => {handlerChange('gender', true)}}
                                     >м</div>
                                     <div className='passenger-form-passenger-info-gender-toggle-border'></div>
                                     <div 
-                                        className={`passenger-form-passenger-info-gender-womenGender ${passengerInfo.womenGender ? 'gender-active' : ''}`}
-                                        onClick={() => {toggleGender('women')}}
+                                        className={`passenger-form-passenger-info-gender-womenGender ${!passengerInfo.gender ? 'gender-active' : ''}`}
+                                        onClick={() => {handlerChange('gender', false)}}
                                     >ж</div>
                                 </div>
                             </div>
@@ -193,13 +258,12 @@ export default function Passenger(props: { index: number }) {
                                 <h3 className='passenger-form-passenger-info-genderAndBirthDate-title'>Дата рождения</h3>
                                 <div className='passenger-form-passenger-info-birthDate'>
                                 <DatePicker 
-                                    selected={passengerInfo.birthDate} 
-                                    onChange={(date: Date) => handlerChange('birthDate', date)} 
+                                    selected={passengerInfo.birthday} 
+                                    onChange={(date: Date) => handlerChange('birthday', date)} 
                                     customInput={customInput()}
                                     dateFormat="dd/MM/yyyy"
                                     locale={ru}
                                     placeholderText='ДД/ММ/ГГ'
-                                    required
                                 />    
                             </div>
                             </div>
@@ -219,29 +283,30 @@ export default function Passenger(props: { index: number }) {
                             <h3 className='passenger-form-passenger-documents-title'>Тип документа</h3>
                             <Select 
                                 className='passenger-form-passenger-documents-select'
-                                options={pessangerDocumentsType}
-                                onChange={(data) => {
-                                    setDocumentType(data as ISelectOption) 
-                                    setDocument(initDocument)
-                                }}
-                                value={documentType}
+                                options={documentTypes}
+                                onChange={(data) => { handlerChange('document_type', data as ISelectOption) }}
+                                value={passengerInfo.document_type}
                                 styles={colourStyles}
                             />
                         </div>
                         {fieldsForDocuments()}
                     </div> 
-                    <div className='form-button-wrapper'>
-                        <button 
-                            className='form-button'
-                            onClick={formCheck}
-                        >
-                            Следующий пассажир
-                        </button>
-                    </div>
+                    {   errors.length
+                        ? <div className='form-result-wrapper'>
+                            <div>
+                                <img src='/images/close-errors.png' onClick={() => {dispatch(cleanErrorsByIndex(props.index))}}/>
+                            </div>
+                            <div className='errors-wrapper'>
+                                {
+                                    errors?.map(error => <div className='error'>{error.message}</div>)
+                                }    
+                            </div>
+                        </div>  
+                        : null  
+                    }
+                    
                 </>
                 : <></>}</>
-            
-
         </div>
     )
 }

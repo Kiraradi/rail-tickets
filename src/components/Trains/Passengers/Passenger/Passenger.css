@@ -210,11 +210,23 @@
     color: #C4C4C4;
 }
 
-.form-button-wrapper {
+.form-result-wrapper {
     display: flex;
     padding: 15px 25px;
-    align-items: center;
-    justify-content: flex-end;
+    align-items: flex-start;
+    background-color: #FF3D0061;
+    gap: 16px;
+
+    .errors-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .error {
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 21px;
+    }
 }
 
 .form-button {

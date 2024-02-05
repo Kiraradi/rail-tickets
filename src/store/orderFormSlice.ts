@@ -1,13 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IOrderRequest, ISeatOrder } from '../interfaces/IOrderRequest';
+import { IOrderRequest, IPersonInfo, ISeatOrder } from '../interfaces/IOrderRequest';
 import { IDirection } from '../interfaces/IDirectionsResponse';
 
+export interface IError {
+    index: number,
+    message: string
+}
+
 export interface IOrderFormSlice {
-    orderForm: IOrderRequest
+    orderForm: IOrderRequest,
+    errors: IError[]
 }
 
 const initialState: IOrderFormSlice = {
-    orderForm: {} as IOrderRequest
+    orderForm: {} as IOrderRequest,
+    errors: []
 }
 
 const orderFormSlice = createSlice({
@@ -32,6 +39,8 @@ const orderFormSlice = createSlice({
                     seats: []
                 } 
             }
+
+            state.errors = [];
         },
         cleanOrderFormSeatsByDirection(state, action: PayloadAction<boolean>) {
             if (action.payload && state.orderForm.arrival) {
@@ -41,11 +50,13 @@ const orderFormSlice = createSlice({
             if (!action.payload && state.orderForm.departure) {
                 state.orderForm.departure.seats = [];
             }
+            state.errors = [];
         },
         cleanOrderForm(state) {
             state.orderForm.user = null;
             state.orderForm.arrival = null;
             state.orderForm.departure = null;
+            state.errors = [];
         },
         setSeats(state, action: PayloadAction<{ isArrival: boolean, seats: ISeatOrder[] }>) {
             if (action.payload.isArrival && state.orderForm.arrival) {
@@ -55,10 +66,53 @@ const orderFormSlice = createSlice({
             if (!action.payload.isArrival && state.orderForm.departure) {
                 state.orderForm.departure.seats = action.payload.seats;
             }
+        },
+        setPersonInfo(state, action: PayloadAction<{index: number, personInfo: IPersonInfo}>) {
+            if (action.payload.personInfo) {
+                if (state.orderForm.arrival) {
+                    let seat = state.orderForm.arrival.seats[action.payload.index];
+                    seat.is_child = !action.payload.personInfo.is_adult;
+                    seat.person_info = {
+                        is_adult: action.payload.personInfo.is_adult,
+                        first_name: action.payload.personInfo.first_name,
+                        last_name: action.payload.personInfo.last_name,
+                        patronymic: action.payload.personInfo.patronymic,
+                        gender: action.payload.personInfo.gender,
+                        birthday: action.payload.personInfo.birthday,
+                        document_type: action.payload.personInfo.document_type,
+                        document_data: action.payload.personInfo.document_data,
+                    };
+                }
+
+                if (state.orderForm.departure) {
+                    let seat = state.orderForm.departure.seats[action.payload.index];
+                    seat.is_child = !action.payload.personInfo.is_adult;
+                    seat.person_info = {
+                        is_adult: action.payload.personInfo.is_adult,
+                        first_name: action.payload.personInfo.first_name,
+                        last_name: action.payload.personInfo.last_name,
+                        patronymic: action.payload.personInfo.patronymic,
+                        gender: action.payload.personInfo.gender,
+                        birthday: action.payload.personInfo.birthday,
+                        document_type: action.payload.personInfo.document_type,
+                        document_data: action.payload.personInfo.document_data,
+                    };
+                }
+            }
+            
+        },
+        setErrors(state, action: PayloadAction<IError[]>) {
+            state.errors = action.payload;
+        },
+        cleanErrors(state) {
+            state.errors = [];
+        },
+        cleanErrorsByIndex(state, action: PayloadAction<number>) {
+            state.errors = state.errors.filter(error => error.index !== action.payload);
         }
     }
 })
 
-export const { changeOrderForm, cleanOrderForm, initOrderForm, cleanOrderFormSeatsByDirection, setSeats } = orderFormSlice.actions;
+export const { changeOrderForm, cleanOrderForm, initOrderForm, cleanOrderFormSeatsByDirection, setSeats, setPersonInfo, setErrors, cleanErrors, cleanErrorsByIndex } = orderFormSlice.actions;
 
 export default orderFormSlice.reducer;
