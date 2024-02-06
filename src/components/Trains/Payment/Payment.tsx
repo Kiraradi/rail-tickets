@@ -11,7 +11,7 @@ export interface IUserForm {
     patronymic: string
     phone: string
     email: string
-    payByCash: boolean
+    payByCash: boolean 
 }
 
 export default function Payment() {
@@ -105,6 +105,7 @@ export default function Payment() {
                             name='patronymic'
                             value={userForm.phone}
                             onChange={(e) => handlerChange('phone', e.target.value)}
+                            placeholder="+7 ___ ___ __ __"
                         /> 
                     </div>
                 </div> 
@@ -117,6 +118,7 @@ export default function Payment() {
                         name='patronymic'
                         value={userForm.email}
                         onChange={(e) => handlerChange('email', e.target.value)}
+                        placeholder="inbox@gmail.ru"
                     /> 
                 </div>       
             </div>
@@ -128,22 +130,46 @@ export default function Payment() {
         if (!userForm) {
             return <></>
         }
+        
 
         return <div className="payment-form-wrapper">
             <div className='payment-form-header'>
                 <h2 className='payment-form-header-title'>Способ оплаты</h2>
             </div>
-            <div className='payment-form-passenger-info'>
-                <div className='payment-form-passenger-info-limitedMobility'>
-                    {/*<input 
-                        type="checkbox" 
-                        className='payment-form-passenger-info-limitedMobility-checkbox'
-                        checked={userForm.limitedMobility}
-                        onChange={() => handlerChange('limitedMobility', !userForm.limitedMobility)}
-                    />
-    <span className='payment-form-passenger-info-limitedMobility-text'>ограниченная подвижность</span>*/}
+            <div className='payment-form-passenger-info-wrapper'>
+                <div className='payment-form-passenger-info'>
+                    <div className='payment-form-passenger-info-checkbox-wrapper'>
+                            <input 
+                                type="checkbox" 
+                                className='payment-form-passenger-info-checkbox'
+                                checked={userForm.payByCash}
+                                onChange={() => handlerChange('payByCash', !userForm.payByCash)}
+                            />
+                            <span className='payment-form-passenger-info-checkbox-text'>Онлайн</span>
+                    </div> 
+
+                    <div className="online-payment-methods">
+                        <span className="online-payment-method">Банковской картой</span>
+                        <span className="online-payment-method">PayPal</span>
+                        <span className="online-payment-method">Visa QIWI Wallet</span>
+                    </div>
                 </div>         
             </div>
+            <div className='payment-form-passenger-info-wrapper'>
+                <div className='payment-form-passenger-info'>
+                    <div className='payment-form-passenger-info-checkbox-wrapper'>
+                            <input 
+                                type="checkbox" 
+                                className='payment-form-passenger-info-checkbox'
+                                checked={!userForm.payByCash}
+                                onChange={() => handlerChange('payByCash', !userForm.payByCash)}
+                            />
+                            <span className='payment-form-passenger-info-checkbox-text'>Наличными</span>
+                    </div> 
+
+                </div>         
+            </div>
+            
         </div>
     }
 

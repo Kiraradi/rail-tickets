@@ -61,8 +61,11 @@ export default function Seating() {
                 <button 
                     className={isOrderFormValid() ? "seating-button" : "seating-button-blocked"}
                     onClick={()=> {
-                        dispatch(goAhead());
-                        navigator(`/trains/${index}/passengers`);
+                        if (isOrderFormValid()) {
+                            dispatch(goAhead());
+                            navigator(`/trains/${index}/passengers`);
+                        }
+                        
                     }}
                 >Выбрать места</button> 
             </div>

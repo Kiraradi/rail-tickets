@@ -8,6 +8,8 @@
 
 .payment-form-wrapper {
     gap: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 .payment-form-header {
@@ -104,4 +106,33 @@
 
 .form-button:hover {
     color: #FFA800;
+}
+
+.payment-form-passenger-info-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.payment-form-passenger-info-checkbox {
+    width: 32px;
+    height: 32px;
+}
+
+.payment-form-passenger-info-checkbox-text {
+    color: #928F94;
+}
+
+.online-payment-methods {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.online-payment-method {
+    font-size: 24px;
+    color: #292929;
+    max-width: 184px;
+    width: 100%;
+    font-weight: 700;
 }
