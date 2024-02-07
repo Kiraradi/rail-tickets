@@ -16,7 +16,7 @@ export default function Steps() {
               <div className='step-text step-number'>{index + 1}</div>
               <div className='step-text'>{step}</div>  
             </div>
-            <div className={`triangle-right ${ index <= currentStep ? 'selected' : '' }`}></div>
+            <div className={`triangle-right ${ index <= currentStep && index < steps.length - 1 ? 'selected' : '' }`}></div>
             { index === steps.length - 1 ? null : <img className='arrow-img' src="/images/vector.png" alt='icon'/>}
           </div>
           }

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hook";
 import { IUser, PaymentMethod } from "../../../interfaces/IOrderRequest";
+import { setUser } from "../../../store/orderFormSlice";
+import { goAhead } from "../../../store/stepSlice";
+import { useNavigate, useParams } from "react-router-dom";
 
 import './Payment.css';
-import { setUser } from "../../../store/orderFormSlice";
 
 export interface IUserForm {
     first_name: string
@@ -19,6 +21,8 @@ export default function Payment() {
     const orderForm = useAppSelector(state => state.orderForm.orderForm);
     const dispatch = useAppDispatch();
     const [userForm, setUserForm] = useState<IUserForm | null>();
+    const navigator = useNavigate();
+    const { index } = useParams();
     
     useEffect(() => {
         if (!userForm) {
@@ -173,8 +177,34 @@ export default function Payment() {
         </div>
     }
 
+    const validate = () => {
+        if (userForm) {
+            return userForm.first_name
+                && userForm.last_name
+                && userForm.email
+                && userForm.phone;
+        }
+
+        return false;
+    }
+
     return <div className="Payment">
-        {UserInfoForm()}
-        {PaymentMethodForm()}
+        <div className="Payment-form">
+            {UserInfoForm()}
+            {PaymentMethodForm()}
+        </div>
+        <div className="payment-form-buttons-wrapper">
+            <button
+                className={validate() ? "payment-form-button" : "payment-form-button-blocked"}
+                onClick={()=> {
+                    if (validate()) {
+                        dispatch(goAhead());
+                        navigator(`/trains/${index}/checking`);
+                    }
+                }}
+                >
+                Купить билеты
+            </button>     
+        </div>
     </div>
 }

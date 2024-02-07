@@ -91,7 +91,7 @@ export default function TrainCard(props: ITrainCard) {
         </div>
     }
 
-    const MainSeatsInfo= () => {
+    const MainSeatsInfo = () => {
         return (
            <div className="mainSeatsInfo">
             {SeatsInfo(props.direction.arrival)}

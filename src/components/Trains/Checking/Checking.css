@@ -1,0 +1,228 @@
+.Checking {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 116px;
+}
+
+.checking-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: #FFF;
+    border: 1px solid #C4C4C4;
+}
+
+.card-title-wrapper {
+    padding: 30px;
+    border-bottom: 1px solid #928F94;
+}
+
+.card-title {
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 35px;
+    color: #292929;
+}
+
+.card-body {
+    display: flex;
+    min-height: 145px;
+}
+
+.card-body-left {
+    width: 70%;
+    border-right: 1px solid #E5E5E5;
+
+    &.payment-method-card-body-left {
+        padding: 44px 31px;
+        font-size: 24px;
+        font-weight: 400;
+        line-height: 28px;
+        color: #292929;
+    }
+}
+
+.train-card-body-left {
+    display: flex;
+    flex-direction: row;
+
+    .MainInfo {
+        width: 30%;
+    }
+
+    .directionsInfo {
+        width: 70%;
+        border-right: none;
+    }
+}
+
+.passenger-wrapper {
+    display: flex;
+    gap: 32px;
+    padding: 30px;
+
+    &:first-child {
+        padding-top: 60px;
+    }
+
+    &:last-child {
+        padding-bottom: 90px;
+    }
+
+    &:not(:last-child) {
+        border-bottom: 1px solid #E5E5E5;
+    }
+}
+
+.passenger-body-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 17px;
+}
+
+.passenger-img {
+    width: 68px;
+    height: 68px;
+}
+
+.passenger-age {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #292929;
+}
+
+.passenger-body-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.passenger-info {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #928F94;
+
+    &:first-child {
+        color: #292929;
+        margin-bottom: 10px;
+    }
+}
+
+.sum-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .sum-text {
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 35px;
+        color: #292929;   
+    }
+
+    .sum-result-text {
+        font-size: 30px;
+        font-weight: 400;
+        line-height: 35px;
+        color: #292929;   
+        font-weight: 700;
+    }
+}
+
+.card-body-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 30%;
+    padding: 21px;
+    gap: 28px;
+
+    .mainSeatsInfo {
+        width: 100%;
+        gap: 30px;
+        padding: 0;
+    }
+}
+
+.card-body-right-button {
+    border: 1px solid #C4C4C4;
+    background: #FFF;
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+    color: #292929;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 5px;
+    padding: 15px 30px;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+}
+
+.card-body-right-button:hover {
+    color: #FFA800;
+}
+
+.card-body-right-button:active {
+    background: #FFA800;
+    color: #292929;
+    border: 1px solid #FFA800;
+}
+
+.checking-button-wrapper{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.checking-form-button {
+    border: 1px solid #FFA800;
+    border-radius: 5px;
+    padding: 10px 50px;
+    background: #FFA800;
+    color: #FFF;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+}
+
+.checking-form-button:hover {
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.checking-form-button:active {
+    background-color: #F7F5F9;
+    color: #FFA800;
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
+}
+
+.checking-form-button-blocked {
+    border: 1px solid #928F94;
+    border-radius: 5px;
+    padding: 10px 50px;
+    background: #928F94;
+    color: #FFF;
+    text-align: center;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 150ms ease-in-out;
+}

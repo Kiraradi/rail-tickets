@@ -112,10 +112,13 @@ const orderFormSlice = createSlice({
         },
         setUser(state, action: PayloadAction<IUser>) {
             state.orderForm.user = action.payload;
+        },
+        cleanUser(state) {
+            state.orderForm.user = null;
         }
     }
 })
 
-export const { changeOrderForm, cleanOrderForm, initOrderForm, cleanOrderFormSeatsByDirection, setSeats, setPersonInfo, setErrors, cleanErrors, cleanErrorsByIndex, setUser } = orderFormSlice.actions;
+export const { changeOrderForm, cleanOrderForm, initOrderForm, cleanOrderFormSeatsByDirection, setSeats, setPersonInfo, setErrors, cleanErrors, cleanErrorsByIndex, setUser, cleanUser } = orderFormSlice.actions;
 
 export default orderFormSlice.reducer;

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export interface IStepSlice {
     step: number
@@ -22,10 +22,13 @@ const stepSlice = createSlice({
         },
         goToFirstPage(state) {
             state.step = 0;
+        },
+        goTo(state, action: PayloadAction<number>) {
+            state.step = action.payload;
         }
     }
 })
 
-export const { goAhead, goPreviousStep, init, goToFirstPage } = stepSlice.actions;
+export const { goAhead, goPreviousStep, init, goToFirstPage, goTo } = stepSlice.actions;
 
 export default stepSlice.reducer;

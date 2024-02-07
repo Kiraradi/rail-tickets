@@ -8,6 +8,7 @@ import Seating from "./components/Trains/Seating/Seating";
 import Passengers from "./components/Trains/Passengers/Passengers";
 import SuccessfulBuy from "./components/SuccessfulBuy/SuccessfulBuy";
 import Payment from "./components/Trains/Payment/Payment";
+import Checking from "./components/Trains/Checking/Checking";
 
 import './App.css';
 
@@ -23,6 +24,7 @@ function App() {
             <Route path=":index" element={<Seating/>}/>
             <Route path=":index/passengers" element={<Passengers/>}/>
             <Route path=":index/payment" element={<Payment/>}/>
+            <Route path=":index/checking" element={<Checking/>}/>
           </Route>
           <Route path="/successful-buy" element={<SuccessfulBuy/>}></Route>
         </Routes>
